@@ -15,3 +15,11 @@ SoundTypeLab é um website inovador que combina música, tipografia e criação 
 - Falta integrar sistema de historico
 
 - ...
+
+# Run
+
+ Clone o repositorio 
+ npm install
+ npm run dev
+
+ http://localhost:3000
