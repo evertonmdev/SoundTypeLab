@@ -1,14 +1,14 @@
-const ButtonStylized = ({href, onClick, padding, children}) => {
-  return <button
-    href={href}
-    onClick={onClick}
-    className={`bg-ColorTree text-ColorTwo rounded-lg hover:scale-x-110 transition-all`}
-    style={{
-        padding: padding ? padding : "0",
-    }}
+import '../../styles/styles.scss';
+
+const ButtonStylized = ({ href, onClick, children }) => {
+  return (
+    <button
+      href={href}
+      onClick={onClick}
     >
-    {children}
-  </button>
+      {children}
+    </button>
+  )
 }
 
 export default ButtonStylized

@@ -1,0 +1,242 @@
+@import './mixins';
+@import './variables';
+
+* {
+    @include no-gaps;
+    font-family: $main-font;
+}
+
+html,
+body {
+    @include full-screen;
+    overflow-x: hidden;
+    background-color: $background-color;
+    scroll-behavior: smooth;
+}
+
+@include scroll-bar;
+
+header {
+    width: 100%;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    display: none;
+    // resolver
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        font-size: 25px;
+        font-weight: $title-weight;
+        font-family: Arial, Helvetica, sans-serif;
+        @include gradient-text;
+    }
+
+    div {
+        background-color: $secundary-color;
+        padding: 12px 30px;
+
+        button {
+            color: $title-icons-color;
+        }
+    }
+}
+
+.introduction {
+    @include full-screen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding-inline: 10%;
+    gap: 20px;
+
+    h1 {
+        font-size: 70px;
+        color: $title-icons-color;
+        font-weight: $title-weight;
+    }
+
+    p {
+        color: $title-icons-color;
+    }
+
+    button {
+        background: $linear-gradient;
+        display: inline;
+        padding: 10px 40px;
+        border-radius: 100px;
+        color: $title-icons-color;
+    }
+}
+
+.studio {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 10%;
+    box-sizing: border-box;
+
+    .title {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 100px;
+
+        h1 {
+            color: $title-icons-color;
+            font-size: 50px;
+            font-weight: $title-weight;
+        }
+
+        p {
+            font-size: 25px;
+            font-weight: $title-weight;
+            @include gradient-text;
+        }
+    }
+
+    div {
+        display: grid;
+        grid-template-columns: 46% 46%;
+        justify-content: space-between;
+
+        section {
+            div {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .recent-videos {
+            h1 {
+                color: $title-icons-color;
+                font-size: 25px;
+                font-weight: $title-weight;
+                margin-bottom: 20px;
+            }
+
+            .video-container {
+                max-height: 260px;
+                overflow: scroll;
+                overflow-x: hidden;
+            }
+
+            .video {
+                display: flex;
+                flex-direction: row;
+                justify-content: left;
+                margin-bottom: 15px;
+
+                .thumbnail {
+                    min-width: 120px;
+                    height: 70px;
+                    background-color: #ddd;
+                }
+
+                span {
+                    color: $title-icons-color;
+                    font-size: 18px;
+                    margin-left: 15px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    max-width: 250px;
+                }
+            }
+        }
+
+        .video-finder {
+            input {
+                background-color: $secundary-color;
+                border-radius: 100px;
+                padding: 10px 20px;
+                width: 100%;
+            }
+
+            button {
+                background: $linear-gradient;
+                align-self: center;
+                display: inline-block;
+                padding: 10px 40px;
+                border-radius: 100px;
+                color: $title-icons-color;
+                margin-top: 20px;
+            }
+
+            .video {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 46% 46%;
+
+                section {
+                    span {
+                        color: $title-icons-color;
+                    }
+
+                    Image {
+                        object-fit: contain;
+                        height: 200px;
+                        width: auto;
+                    }
+
+                    div {
+                        width: 100%;
+                        background-color: $primary-color;
+                        border-radius: 100px;
+                        padding-block: 10px;
+
+                        a {
+                            color: $title-icons-color;
+                            font-size: 20px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.steps {
+    width: 100%;
+    padding: 4% 10%;
+    background: $linear-gradient;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    h1 {
+        color: $title-icons-color;
+        font-size: 25px;
+        font-weight: $title-weight;
+    }
+
+    div {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        section {
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+
+            Image {
+                width: 100%;
+                height: auto;
+            }
+
+            span {
+                font-size: 16px;
+                font-weight: 300;
+                color: $title-icons-color;
+                text-align: justify;
+            }
+        }
+    }
+}
