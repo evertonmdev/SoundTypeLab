@@ -19,6 +19,8 @@ import Step3 from '../assets/step-3.jpg';
 
 import LoadingAnimation from '@/components/animations/lottie/loading.json'
 
+// CRIAR A FUNÇÃO DE PUXAR A MÚSICAS QUE VOCÊ BAIXOU DDE DENTRO DA PASTA 'youtube'
+
 export default function Home() {
   const [Link, setLink] = useState(null)
   const [ResponseData, setResponseData] = useState(null)
@@ -85,7 +87,7 @@ export default function Home() {
                   : ResponseData ?
                     <CardVideo Title={ResponseData.Title} Thumbnail={ResponseData.Thumbnail} Formats={ResponseData.Formats} />
                     : ErrorReq ?
-                      <h1 className='text-ColorTwo'>Ocorreu um erro ao tentar eencontrar o Link, por favor recarregue a pagina</h1>
+                      <h1 className='text-ColorTwo'>Ocorreu um erro ao tentar encontrar o Link, por favor recarregue a pagina</h1>
                       : null
               }
             </div>
