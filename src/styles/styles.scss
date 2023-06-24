@@ -22,8 +22,7 @@ header {
     box-sizing: border-box;
     position: absolute;
     top: 0;
-    display: none;
-    // resolver
+    display: flex;
     justify-content: space-between;
     align-items: center;
 
@@ -150,6 +149,7 @@ header {
         .video-finder {
             input {
                 background-color: $secundary-color;
+                color: $title-icons-color;
                 border-radius: 100px;
                 padding: 10px 20px;
                 width: 100%;
@@ -169,28 +169,46 @@ header {
                 width: 100%;
                 display: grid;
                 grid-template-columns: 46% 46%;
+                margin-top: 20px;
+                align-items: center;
 
                 section {
-                    span {
+                    p, span {
                         color: $title-icons-color;
                     }
-
+                    p {
+                        text-align: center;
+                    }
                     Image {
                         object-fit: contain;
-                        height: 200px;
-                        width: auto;
                     }
 
-                    div {
+                    .buttons {
+                        display: grid;
+                        grid-template-columns: 48% 4% 48%;
+                        padding-inline: 5%;
                         width: 100%;
                         background-color: $primary-color;
                         border-radius: 100px;
                         padding-block: 10px;
+                        margin-top: 20px;
+
+                        .separator {
+                            width: 2px;
+                            height: 100%;
+                            background-color: #FFF;
+                            justify-self: center;
+                        }
 
                         a {
                             color: $title-icons-color;
                             font-size: 20px;
                             font-weight: 400;
+                            cursor: pointer;
+                            text-align: center;
+                        }
+                        a:hover {
+                            background: radial-gradient(#000000, #44006e,#4A0078);;
                         }
                     }
                 }
