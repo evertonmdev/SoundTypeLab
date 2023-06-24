@@ -1,5 +1,3 @@
-import '../../styles/styles.scss';
-
 const InputStylized = ({ onChange, placeholder }) => {
     return (
         <input

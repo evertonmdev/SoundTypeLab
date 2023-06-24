@@ -1,5 +1,3 @@
-import '../../styles/styles.scss';
-
 const ButtonStylized = ({ href, onClick, children }) => {
   return (
     <button

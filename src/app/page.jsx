@@ -1,28 +1,25 @@
 "use client";
 
-import ReactTyped from 'react-typed';
-import Lottie from "lottie-react";
-import { useState } from 'react';
-
-import { motion } from 'framer-motion';
-import axios from 'axios';
-
-import { OpenCortina } from '@/components/animations/framerMotion/Home';
-import { ButtonStylized, CardVideo, InputStylized } from '@/components/defaults';
-
-import '../styles/styles.scss';
 import RecentVideos from '../components/defaults/RecentVideos';
 import Steps from '../components/defaults/Steps';
 import Step1 from '../assets/step-1.jpg';
 import Step2 from '../assets/step-2.jpg';
 import Step3 from '../assets/step-3.jpg';
 
+
+import Lottie from "lottie-react";
+import axios from 'axios';
+
+import { useState } from 'react';
+import { ButtonStylized, CardVideo, InputStylized } from '@/components/defaults';
 import LoadingAnimation from '@/components/animations/lottie/loading.json'
+
+
 
 // CRIAR A FUNÇÃO DE PUXAR A MÚSICAS QUE VOCÊ BAIXOU DDE DENTRO DA PASTA 'youtube'
 
 export default function Home() {
-  const [Link, setLink] = useState(null)
+  const [NameMusic, setNameMusic] = useState(null)
   const [ResponseData, setResponseData] = useState(null)
   const [ErrorReq, setErrorReq] = useState(null)
 
@@ -30,15 +27,19 @@ export default function Home() {
 
   const SendReq = async () => {
     setLoading(true)
-    const res = await axios.post('/api/posts', {
-      link: Link
-    }).then(r => r).catch(e => setErrorReq(true))
-    setLoading(false)
-    setResponseData({
-      Title: res.data.title,
-      Thumbnail: res.data.thumbnail,
-      Formats: res.data.formats
+    await axios.post('/api/posts', {
+      name_find: NameMusic
+    }).then(r => {
+      setResponseData({
+        Title: r.data.title,
+        Thumbnail: r.data.thumbnail,
+        Lyrics: r.data.lyrics
+      })
+    }).catch(e => {
+      console.log(e)
+      setErrorReq("Não foi possivel encontrar a musica ou letra sincronizada indisponivel")
     })
+    setLoading(false) 
   }
 
   return (
@@ -75,7 +76,7 @@ export default function Home() {
           </section>
           <section className='video-finder'>
             <div className='finder'>
-              <InputStylized onChange={doc => setLink(doc.target.value)} placeholder='Cole seu link aqui' />
+              <InputStylized onChange={doc => setNameMusic(doc.target.value)} placeholder='Qual o nome da musica?' />
               <ButtonStylized onClick={SendReq}>Pesquisar</ButtonStylized>
             </div>
             <div className='video'>
@@ -85,9 +86,9 @@ export default function Home() {
                     <Lottie animationData={LoadingAnimation} />
                   </div>
                   : ResponseData ?
-                    <CardVideo Title={ResponseData.Title} Thumbnail={ResponseData.Thumbnail} Formats={ResponseData.Formats} />
+                    <CardVideo Title={ResponseData.Title} Thumbnail={ResponseData.Thumbnail}  Lyrics={ResponseData.Lyrics} />
                     : ErrorReq ?
-                      <h1 className='text-ColorTwo'>Ocorreu um erro ao tentar encontrar o Link, por favor recarregue a pagina</h1>
+                      <h1 className='text-ColorTwo'>{ErrorReq}</h1>
                       : null
               }
             </div>

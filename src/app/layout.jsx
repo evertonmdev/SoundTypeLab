@@ -1,9 +1,7 @@
+import './globals.css';
+import "@/styles/styles.scss";
 
-import { Header } from '@/components/defaults'
-import './globals.css'
-import { Roboto_Mono } from 'next/font/google'
-
-const RobotoMono = Roboto_Mono({ subsets: ['latin'], weight: '400' })
+import { Header } from '@/components/defaults';
 
 export const metadata = {
   title: 'SoundTypeLab',
@@ -13,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${RobotoMono.className} overflow-x-hidden`}>
+      <body>
         <Header />
         {children}
       </body>

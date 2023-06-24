@@ -1,5 +1,3 @@
-import '../../styles/styles.scss';
-
 export default function RecentVideos() {
     return (
         <div className='video'>

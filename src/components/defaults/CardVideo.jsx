@@ -1,11 +1,20 @@
 import Image from 'next/image';
-import { ButtonStylized } from '.';
-import axios from 'axios';
-
-import '../../styles/styles.scss';
 import Separator from '../utils/Separator';
 
-function CardVideo({ Title, Thumbnail, Formats }) {
+function CardVideo({ Title, Thumbnail, Lyrics }) {
+  const SetMusicSelected = () => {
+    localStorage.setItem("MusicSelected", JSON.stringify({
+        Title,
+        Thumbnail,
+        Lyrics
+      })
+    )
+
+   window.location.href = "/edit"
+}
+  
+
+
   return (
     <>
       <section>
@@ -16,16 +25,16 @@ function CardVideo({ Title, Thumbnail, Formats }) {
       </section>
       <section>
         <p>
-          Deseja salvar este vídeo?
+          Deseja usar esta musica?
         </p>
         <div className='buttons'>
-        <a href={`api/download?url=${encodeURIComponent(Formats[0].url)}&title=${encodeURIComponent(Title)}`}>
+        <button onClick={SetMusicSelected}>
           Sim
-        </a>
+        </button>
           <Separator />
-          <a>
+          <button>
             Não
-          </a>
+          </button>
         </div>
       </section>
     </>

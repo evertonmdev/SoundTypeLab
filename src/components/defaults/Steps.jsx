@@ -1,4 +1,3 @@
-import '../../styles/styles.scss';
 import Image from 'next/image';
 
 export default function RecentVideos(props) {
