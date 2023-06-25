@@ -21,20 +21,10 @@ const page = () => {
             method: "POST",
             url: "http://localhost:3000/api/GetYoutubeId",
             data: {
-                name: Music.Title + " lyrics"
+                name: Music.Title
             }
-        })
-
-        
-        const response = await axios({
-            method: "POST",
-            url: "http://localhost:3000/api/playback",
-            data: {
-                link: Link.data.link
-            }
-        })
-
-        setAudio(response.data.formats[5].url)
+        })    
+        setAudio(Link.data.link)
     }
 
   
@@ -58,7 +48,7 @@ const page = () => {
             <img src={Music.Thumbnail} className="object-cover w-full h-full col-span-2 row-span-2 row-start-2" />
             <div className="col-span-2 row-start-4 flex justify-center items-center gap-3 w-full h-full " >
                 { 
-                    Audio ? <Playback src={Audio} audioRef={AudioRef} setCurrentTime={setCurrentTime} />
+                    Audio ? <Playback Title={Music.Title} src={Audio} audioRef={AudioRef} setCurrentTime={setCurrentTime} />
                     :<>
                        <h1 className="text-2xl font-mono text-white animate-pulse">LOADING...</h1>
                     </>

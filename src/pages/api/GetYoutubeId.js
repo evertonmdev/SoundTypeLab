@@ -1,5 +1,4 @@
 "use server"; 
-
 import puppeteer from "puppeteer";
 
 const GetYoutubeId = async (req, res) => {
@@ -11,7 +10,7 @@ const GetYoutubeId = async (req, res) => {
 
     try {
         const browser = await puppeteer.launch({
-            headless: true,
+            headless: 'new',
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
@@ -30,7 +29,7 @@ const GetYoutubeId = async (req, res) => {
         }
         );
         await browser.close();
-
+        
         return res.status(200).json({
             link: link,
         })

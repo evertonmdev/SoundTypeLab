@@ -1,8 +1,12 @@
-export default function RecentVideos() {
+import Image from "next/image";
+
+export default function RecentVideos({ Thumbnail, Title }) {
     return (
         <div className='video'>
-            <div className='thumbnail'></div>
-            <span>Nome do vídeoNome do vídeoNome do vídeoNome do vídeoNome do vídeoflex-wrap: wrap;flex-wrap: wrap;</span>
+            <div className='thumbnail'>
+                <Image src={Thumbnail} width={400} height={200} className="object-cover w-full h-full" />
+            </div>
+            <span>{Title}</span>
         </div>
     )
 }

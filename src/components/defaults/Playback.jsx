@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect } from "react"
 
 
-const Playback = ({ src, audioRef, setCurrentTime }) => {
+const Playback = ({ src, audioRef, Title, setCurrentTime }) => {
     useEffect(() => {
         const audioElement = audioRef.current
         const HandleTimeUpdate = () => setCurrentTime(audioElement.currentTime)
@@ -13,7 +13,7 @@ const Playback = ({ src, audioRef, setCurrentTime }) => {
 
     return (
         <div>
-            <audio ref={audioRef} src={src} controls />
+            <audio autoPlay ref={audioRef} src={`http://localhost:3000/api/playback?link=${encodeURIComponent(src)}&title=${encodeURIComponent(Title)}`} controls />
         </div>
     )
 }
