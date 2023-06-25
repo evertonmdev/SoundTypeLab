@@ -1,12 +1,9 @@
 "use client";
 
 import Steps from '@/components/defaults/Steps';
-import Step1 from '@/assets/step-1.jpg';
-import Step2 from '@/assets/step-2.jpg';
-import Step3 from '@/assets/step-3.jpg';
+import { Step1, Step2, Step3 } from '@/assets';
 
-import Header from '@/components/defaults/Header';
-
+import { Header } from '@/components/defaults/Header';
 
 import Lottie from "lottie-react";
 import axios from 'axios';
@@ -15,8 +12,6 @@ import { useState } from 'react';
 import { ButtonStylized, CardVideo, InputStylized, RecentVideos } from '@/components/defaults';
 
 import LoadingAnimation from '@/components/animations/lottie/loading.json'
-
-
 
 // CRIAR A FUNÇÃO DE PUXAR A MÚSICAS QUE VOCÊ BAIXOU DDE DENTRO DA PASTA 'youtube'
 
@@ -41,7 +36,7 @@ export default function Home() {
       console.log(e)
       setErrorReq("Não foi possivel encontrar a musica ou letra sincronizada indisponivel")
     })
-    setLoading(false) 
+    setLoading(false)
   }
 
   return (
@@ -79,7 +74,7 @@ export default function Home() {
           </section>
           <section className='video-finder'>
             <div className='finder'>
-              <InputStylized onChange={doc => setNameMusic(doc.target.value)} placeholder='Qual o nome da musica?' />
+              <InputStylized type='text' onChange={doc => setNameMusic(doc.target.value)} placeholder='Qual o nome da musica?' />
               <ButtonStylized onClick={SendReq}>Pesquisar</ButtonStylized>
             </div>
             <div className='video'>
@@ -89,7 +84,7 @@ export default function Home() {
                     <Lottie animationData={LoadingAnimation} />
                   </div>
                   : ResponseData ?
-                    <CardVideo Title={ResponseData.Title} Thumbnail={ResponseData.Thumbnail}  Lyrics={ResponseData.Lyrics} />
+                    <CardVideo Title={ResponseData.Title} Thumbnail={ResponseData.Thumbnail} Lyrics={ResponseData.Lyrics} />
                     : ErrorReq ?
                       <h1 className='text-ColorTwo'>{ErrorReq}</h1>
                       : null

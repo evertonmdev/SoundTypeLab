@@ -3,11 +3,14 @@
 import { LogIn } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 
+import Image from 'next/image';
+
+import { GoogleIcon } from '@/assets';
+
 const LogInGoogleButton = () => {
     return (
-        <button className={"bg-white/40 p-2 px-4 rounded-lg text-black font-mono hover:scale-110 transition-all flex justify-between items-center gap-5"} onClick={() => signIn('google')}>
-            <LogIn />
-            LogIn
+        <button className="google-plugin" onClick={() => signIn('google')}>
+            <Image src={GoogleIcon} width={25} height={25} />
         </button>
     )
 }

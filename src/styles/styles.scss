@@ -41,9 +41,87 @@ header {
 
         a {
             color: $title-icons-color;
-          
+
         }
-      
+
+    }
+}
+
+.input-general {
+    background-color: $secundary-color;
+    color: $title-icons-color;
+    border-radius: 100px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.login {
+    @include full-screen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    section {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        min-width: 320px;
+        max-width: 410px;
+        width: 22%;
+        gap: 25px;
+
+        h1 {
+            font-size: 30px; 
+            color: $title-icons-color;
+            font-weight: $title-weight;
+        }
+
+        div {
+            display: flex;
+        }
+
+        .login-plugins {
+            justify-content: start;
+            width: 100%;
+            gap: 10px;
+            button:hover {
+                background-color: $primary-color;
+            }   
+
+            .google-plugin {
+                padding: 15px;
+                border-radius: 100%;
+                background-color: $secundary-color;
+            }
+        }
+
+        .login-button {
+            justify-content: center;
+            button {
+                padding: 10px 100px;
+                border-radius: 100px;
+                background: $linear-gradient;
+                color: $title-icons-color;
+            }
+        }
+
+        .login-to-register {
+            justify-content: end;
+            height: 20px;
+            align-items: center;
+
+            a {
+                color: $title-icons-color;
+                font-size: 14px;
+
+                span:hover {
+                    font-size: 22px;
+                    @include gradient-text;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }
 
@@ -152,14 +230,7 @@ header {
 
         .video-finder {
             .finder {
-                input {
-                    background-color: $secundary-color;
-                    color: $title-icons-color;
-                    border-radius: 100px;
-                    padding: 10px 20px;
-                    width: 100%;
-                }
-    
+
                 button {
                     background: $linear-gradient;
                     align-self: center;
@@ -170,6 +241,7 @@ header {
                     margin-top: 20px;
                 }
             }
+
             .video {
                 width: 100%;
                 display: grid;
@@ -178,12 +250,16 @@ header {
                 align-items: center;
 
                 section {
-                    p, span {
+
+                    p,
+                    span {
                         color: $title-icons-color;
                     }
+
                     p {
                         text-align: center;
                     }
+
                     Image {
                         object-fit: contain;
                     }
@@ -212,8 +288,10 @@ header {
                             cursor: pointer;
                             text-align: center;
                         }
+
                         button:hover {
-                            background: radial-gradient(#000000, #44006e,#4A0078);;
+                            background: radial-gradient(#000000, #44006e, #4A0078);
+                            ;
                         }
                     }
                 }
