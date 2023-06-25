@@ -3,7 +3,7 @@ const Header = () => {
     <header>
         <h1>SoundTypeLab</h1>
         <div>
-            <button>Entrar</button>
+            <a>Entrar</a>
         </div>
     </header>
   )
