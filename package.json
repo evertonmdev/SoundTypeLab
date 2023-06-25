@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "framer-motion": "^10.12.16",
-    "lucide-react": "^0.246.0"
+    "lucide-react": "^0.252.0"
   }
 }

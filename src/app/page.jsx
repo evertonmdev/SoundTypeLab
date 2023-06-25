@@ -1,17 +1,19 @@
 "use client";
 
-import RecentVideos from '../components/defaults/RecentVideos';
-import Steps from '../components/defaults/Steps';
-import Step1 from '../assets/step-1.jpg';
-import Step2 from '../assets/step-2.jpg';
-import Step3 from '../assets/step-3.jpg';
+import Steps from '@/components/defaults/Steps';
+import Step1 from '@/assets/step-1.jpg';
+import Step2 from '@/assets/step-2.jpg';
+import Step3 from '@/assets/step-3.jpg';
+
+import Header from '@/components/defaults/Header';
 
 
 import Lottie from "lottie-react";
 import axios from 'axios';
 
 import { useState } from 'react';
-import { ButtonStylized, CardVideo, InputStylized } from '@/components/defaults';
+import { ButtonStylized, CardVideo, InputStylized, RecentVideos } from '@/components/defaults';
+
 import LoadingAnimation from '@/components/animations/lottie/loading.json'
 
 
@@ -44,6 +46,7 @@ export default function Home() {
 
   return (
     <main>
+      <Header />
       <section className='introduction'>
         <h1>
           Seu site de tipografia
@@ -120,5 +123,4 @@ export default function Home() {
     </main>
   )
 }
-
 

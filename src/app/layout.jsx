@@ -1,7 +1,7 @@
 import './globals.css';
 import "@/styles/styles.scss";
 
-import { Header } from '@/components/defaults';
+import Provider from '@/components/defaults/Provider';
 
 export const metadata = {
   title: 'SoundTypeLab',
@@ -12,8 +12,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
+        <Provider >
+          {children}
+        </Provider>
       </body>
     </html>
   )
