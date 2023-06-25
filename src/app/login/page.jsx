@@ -4,8 +4,6 @@ import { InputStylized, LogInGoogleButton } from "@/components/defaults"
 import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
 
-import { HeaderLogin } from '@/components/defaults/Header';
-
 import '@/styles/styles.scss';
 
 const Login = () => {
@@ -14,12 +12,16 @@ const Login = () => {
 
     return (
         <main className="login">
-            <HeaderLogin />
+            <header>
+                <a href="/" className="logo">
+                    <h1>SoundTypeLab</h1>
+                </a>
+            </header>
 
             <section>
                 <h1>Login</h1>
-                <InputStylized type='text' placeholder="Email"/>
-                <InputStylized type='password' placeholder="Senha"/>
+                <InputStylized type='text' placeholder="Email" />
+                <InputStylized type='password' placeholder="Senha" />
                 <div className="login-plugins">
                     <LogInGoogleButton />
                 </div>

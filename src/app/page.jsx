@@ -3,7 +3,7 @@
 import Steps from '@/components/defaults/Steps';
 import { Step1, Step2, Step3 } from '@/assets';
 
-import { Header } from '@/components/defaults/Header';
+import Header from '@/components/defaults/Header';
 
 import Lottie from "lottie-react";
 import axios from 'axios';

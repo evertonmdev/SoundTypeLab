@@ -5,7 +5,7 @@ import LogOutGoogleButton from "./LogOutButton";
 import RecentVideos from "./RecentVideos";
 
 import CardVideo from "./CardVideo";
-import { Header, HeaderLogin } from "./Header";
+import Header from "./Header";
 
 export {
     InputStylized,
@@ -14,6 +14,5 @@ export {
     ButtonStylized,
     CardVideo,
     Header,
-    HeaderLogin,
     RecentVideos
 }

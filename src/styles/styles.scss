@@ -13,6 +13,8 @@ body {
     overflow-x: hidden;
     background-color: $background-color;
     scroll-behavior: smooth;
+
+    font-size: 16px;
 }
 
 @include scroll-bar;
@@ -28,20 +30,32 @@ header {
     align-items: center;
     backdrop-filter: blur(10px);
 
-    h1 {
-        font-size: 25px;
-        font-weight: $title-weight;
-        font-family: Arial, Helvetica, sans-serif;
-        @include gradient-text;
+    .logo {
+        cursor: pointer;
+
+        h1 {
+            font-size: 24px;
+            padding-block: 5px;
+            font-weight: $title-weight;
+            font-family: Arial, Helvetica, sans-serif;
+            @include gradient-text;
+        }
     }
 
     div {
         background-color: $secundary-color;
         padding: 12px 30px;
+        display: flex;
 
-        a {
+        a,
+        h1 {
             color: $title-icons-color;
-
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            gap: 10px;
+            font-size: 16px;
         }
 
     }
@@ -53,6 +67,7 @@ header {
     border-radius: 100px;
     padding: 10px 20px;
     width: 100%;
+    font-size: $utility-fontsize;
 }
 
 .login {
@@ -72,7 +87,7 @@ header {
         gap: 25px;
 
         h1 {
-            font-size: 30px; 
+            font-size: $title-fontsize;
             color: $title-icons-color;
             font-weight: $title-weight;
         }
@@ -85,9 +100,10 @@ header {
             justify-content: start;
             width: 100%;
             gap: 10px;
+
             button:hover {
                 background-color: $primary-color;
-            }   
+            }
 
             .google-plugin {
                 padding: 15px;
@@ -98,6 +114,7 @@ header {
 
         .login-button {
             justify-content: center;
+
             button {
                 padding: 10px 100px;
                 border-radius: 100px;
@@ -113,7 +130,7 @@ header {
 
             a {
                 color: $title-icons-color;
-                font-size: 14px;
+                font-size: $utility-fontsize;
 
                 span:hover {
                     font-size: 22px;
@@ -135,13 +152,14 @@ header {
     gap: 20px;
 
     h1 {
-        font-size: 70px;
+        font-size: $bigtitle-fontsize * 1.5;
         color: $title-icons-color;
         font-weight: $title-weight;
     }
 
     p {
         color: $title-icons-color;
+        font-size: $text-fontsize;
     }
 
     button {
@@ -150,6 +168,7 @@ header {
         padding: 10px 40px;
         border-radius: 100px;
         color: $title-icons-color;
+        font-size: $utility-fontsize;
     }
 }
 
@@ -167,12 +186,12 @@ header {
 
         h1 {
             color: $title-icons-color;
-            font-size: 50px;
+            font-size: $bigtitle-fontsize;
             font-weight: $title-weight;
         }
 
         p {
-            font-size: 25px;
+            font-size: $title-fontsize;
             font-weight: $title-weight;
             @include gradient-text;
         }
@@ -193,14 +212,14 @@ header {
         .recent-videos {
             h1 {
                 color: $title-icons-color;
-                font-size: 25px;
+                font-size: $title-fontsize;
                 font-weight: $title-weight;
                 margin-bottom: 20px;
             }
 
             .video-container {
                 max-height: 260px;
-                overflow: scroll;
+                overflow-y: scroll;
                 overflow-x: hidden;
             }
 
@@ -212,13 +231,14 @@ header {
 
                 .thumbnail {
                     min-width: 120px;
+                    max-width: 120px;
                     height: 70px;
                     background-color: #ddd;
                 }
 
                 span {
                     color: $title-icons-color;
-                    font-size: 18px;
+                    font-size: $utility-fontsize;
                     margin-left: 15px;
                     text-overflow: ellipsis;
                     overflow: hidden;
@@ -239,6 +259,7 @@ header {
                     border-radius: 100px;
                     color: $title-icons-color;
                     margin-top: 20px;
+                    font-size: $utility-fontsize;
                 }
             }
 
@@ -246,7 +267,7 @@ header {
                 width: 100%;
                 display: grid;
                 grid-template-columns: 46% 46%;
-                margin-top: 20px;
+                margin-block: 20px;
                 align-items: center;
 
                 section {
@@ -283,7 +304,7 @@ header {
 
                         button {
                             color: $title-icons-color;
-                            font-size: 20px;
+                            font-size: $utility-fontsize;
                             font-weight: 400;
                             cursor: pointer;
                             text-align: center;
@@ -311,7 +332,7 @@ header {
 
     h1 {
         color: $title-icons-color;
-        font-size: 25px;
+        font-size: $title-fontsize;
         font-weight: $title-weight;
     }
 
@@ -333,11 +354,117 @@ header {
             }
 
             span {
-                font-size: 16px;
+                font-size: $utility-fontsize;
                 font-weight: 300;
                 color: $title-icons-color;
                 text-align: justify;
             }
         }
+    }
+}
+
+
+@media screen and (max-width: 376px) {
+    html {
+        font-size: 8px;
+    }
+
+    .studio {
+        div {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .recent-videos {
+            .video-container {
+                flex-direction: row;
+                overflow-x: scroll;
+                overflow-y: hidden;
+
+                .video {
+                    flex-direction: column;
+                    margin-left: 15px;
+    
+                    span {
+                        margin-left: 0;
+                        max-width: 120px;
+                    }
+                }
+            }
+        }
+        .video-finder {
+            .finder {
+
+                button {
+                    background: $linear-gradient;
+                    align-self: center;
+                    display: inline-block;
+                    padding: 10px 40px;
+                    border-radius: 100px;
+                    color: black;
+                    margin-top: 20px;
+                    font-size: $utility-fontsize;
+                }
+            }
+
+            .video {
+                display: flex;
+                flex-direction: column;
+                width: 10px;
+
+                section {
+
+                    p,
+                    span {
+                        color: $title-icons-color;
+                    }
+
+                    p {
+                        text-align: center;
+                    }
+
+                    Image {
+                        object-fit: contain;
+                    }
+
+                    .buttons {
+                        display: grid;
+                        grid-template-columns: 48% 4% 48%;
+                        padding-inline: 5%;
+                        width: 100%;
+                        background-color: $primary-color;
+                        border-radius: 100px;
+                        padding-block: 10px;
+                        margin-top: 20px;
+
+                        .separator {
+                            width: 2px;
+                            height: 100%;
+                            background-color: #FFF;
+                            justify-self: center;
+                        }
+
+                        button {
+                            color: $title-icons-color;
+                            font-size: $utility-fontsize;
+                            font-weight: 400;
+                            cursor: pointer;
+                            text-align: center;
+                        }
+
+                        button:hover {
+                            background: radial-gradient(#000000, #44006e, #4A0078);
+                            ;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 851px) {
+    html {
+        font-size: 12px;
     }
 }

@@ -9,18 +9,21 @@ const Header = () => {
 
   return (
     <header>
-      <h1>SoundTypeLab</h1>
+      <a href="/" className="logo">
+        <h1>SoundTypeLab</h1>
+      </a>
       {
         session ?
           <div className="flex gap-2">
-
             {
-              Confirmar ?
+              Confirmar
+                ?
                 <div className="flex gap-3">
                   <LogOutGoogleButton />
                   <button className={"bg-emerald-600 p-2 px-4 rounded-lg text-white font-mono hover:scale-110 transition-all"} onClick={() => setConfirmar(false)}>Back</button>
                 </div>
-                : <div>
+                :
+                <div>
                   <h1>{session.user.name}</h1>
                   <button className="text-white" onClick={() => setConfirmar(true)}>Sair</button>
                 </div>
@@ -28,7 +31,7 @@ const Header = () => {
           </div>
           :
           <div>
-            <a href="/login" className="flex gap-2 items-center justify-center ">
+            <a href="/login">
               <UserCircle2 size={20} />
               Entrar
             </a>
@@ -38,12 +41,4 @@ const Header = () => {
   )
 }
 
-const HeaderLogin = () => {
-  return (
-    <header>
-        <h1>SoundTypeLab</h1>
-    </header>
-  )
-}
-
-export { Header, HeaderLogin }
+export default Header
