@@ -21,7 +21,7 @@ body {
 
 header {
     width: 100%;
-    padding-left: 30px;
+    padding-left: 24px;
     box-sizing: border-box;
     position: absolute;
     top: 0;
@@ -34,7 +34,7 @@ header {
         cursor: pointer;
 
         h1 {
-            font-size: 24px;
+            font-size: 26px;
             padding-block: 5px;
             font-weight: $title-weight;
             font-family: Arial, Helvetica, sans-serif;
@@ -55,7 +55,7 @@ header {
             justify-content: center;
             flex-direction: row;
             gap: 10px;
-            font-size: 16px;
+            font-size: 18px;
         }
 
     }
@@ -219,8 +219,7 @@ header {
 
             .video-container {
                 max-height: 260px;
-                overflow-y: scroll;
-                overflow-x: hidden;
+                overflow: hidden scroll;
             }
 
             .video {
@@ -265,54 +264,65 @@ header {
 
             .video {
                 width: 100%;
-                display: grid;
-                grid-template-columns: 46% 46%;
+                display: flex;
                 margin-block: 20px;
                 align-items: center;
+                justify-content: center;
 
-                section {
+                .video-box {
+                    display: grid;
+                    grid-template-columns: 46% 46%;
+                    margin-block: 20px;
+                    align-items: center;
 
-                    p,
-                    span {
-                        color: $title-icons-color;
-                    }
+                    section {
 
-                    p {
-                        text-align: center;
-                    }
-
-                    Image {
-                        object-fit: contain;
-                    }
-
-                    .buttons {
-                        display: grid;
-                        grid-template-columns: 48% 4% 48%;
-                        padding-inline: 5%;
-                        width: 100%;
-                        background-color: $primary-color;
-                        border-radius: 100px;
-                        padding-block: 10px;
-                        margin-top: 20px;
-
-                        .separator {
-                            width: 2px;
-                            height: 100%;
-                            background-color: #FFF;
-                            justify-self: center;
-                        }
-
-                        button {
+                        p,
+                        span {
                             color: $title-icons-color;
                             font-size: $utility-fontsize;
-                            font-weight: 400;
-                            cursor: pointer;
+                        }
+
+                        p {
                             text-align: center;
                         }
 
-                        button:hover {
-                            background: radial-gradient(#000000, #44006e, #4A0078);
-                            ;
+                        img {
+                            width: 100%;
+                            height: auto;
+                            object-fit: contain;
+                            margin-bottom: 10px;
+                        }
+
+                        .buttons {
+                            display: grid;
+                            grid-template-columns: 48% 4% 48%;
+                            padding-inline: 5%;
+                            width: 100%;
+                            background-color: $primary-color;
+                            border-radius: 100px;
+                            padding-block: 10px;
+                            margin-top: 20px;
+
+                            .separator {
+                                width: 2px;
+                                height: 100%;
+                                background-color: #FFF;
+                                justify-self: center;
+                            }
+
+                            button {
+                                color: $title-icons-color;
+                                font-size: $utility-fontsize;
+                                font-weight: 400;
+                                cursor: pointer;
+                                text-align: center;
+                            }
+
+                            button:hover {
+                                background: radial-gradient(#000000, #44006e, #4A0078);
+                                ;
+                            }
                         }
                     }
                 }
@@ -363,108 +373,18 @@ header {
     }
 }
 
-
-@media screen and (max-width: 376px) {
-    html {
-        font-size: 8px;
-    }
-
-    .studio {
-        div {
-            display: flex;
-            flex-direction: column-reverse;
-        }
-
-        .recent-videos {
-            .video-container {
-                flex-direction: row;
-                overflow-x: scroll;
-                overflow-y: hidden;
-
-                .video {
-                    flex-direction: column;
-                    margin-left: 15px;
-    
-                    span {
-                        margin-left: 0;
-                        max-width: 120px;
-                    }
-                }
-            }
-        }
-        .video-finder {
-            .finder {
-
-                button {
-                    background: $linear-gradient;
-                    align-self: center;
-                    display: inline-block;
-                    padding: 10px 40px;
-                    border-radius: 100px;
-                    color: black;
-                    margin-top: 20px;
-                    font-size: $utility-fontsize;
-                }
-            }
-
-            .video {
-                display: flex;
-                flex-direction: column;
-                width: 10px;
-
-                section {
-
-                    p,
-                    span {
-                        color: $title-icons-color;
-                    }
-
-                    p {
-                        text-align: center;
-                    }
-
-                    Image {
-                        object-fit: contain;
-                    }
-
-                    .buttons {
-                        display: grid;
-                        grid-template-columns: 48% 4% 48%;
-                        padding-inline: 5%;
-                        width: 100%;
-                        background-color: $primary-color;
-                        border-radius: 100px;
-                        padding-block: 10px;
-                        margin-top: 20px;
-
-                        .separator {
-                            width: 2px;
-                            height: 100%;
-                            background-color: #FFF;
-                            justify-self: center;
-                        }
-
-                        button {
-                            color: $title-icons-color;
-                            font-size: $utility-fontsize;
-                            font-weight: 400;
-                            cursor: pointer;
-                            text-align: center;
-                        }
-
-                        button:hover {
-                            background: radial-gradient(#000000, #44006e, #4A0078);
-                            ;
-                        }
-                    }
-                }
-            }
-        }
-    }
+@media screen and (max-width: 851px) {
+    @include media-850px;
 }
 
-@media screen and (max-width: 851px) {
-    html {
-        font-size: 12px;
-    }
+@media screen and (max-width: 501px) {
+    @include media-500px;
+}
+
+@media screen and (max-width: 421px) {
+    @include media-420px;
+}
+
+@media screen and (max-width: 375px) {
+    @include media-375px;
 }

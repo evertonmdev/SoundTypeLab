@@ -20,6 +20,7 @@
     ::-webkit-scrollbar {
         background-color: $secundary-color;
         width: 8px;
+        height: 8px;
         border-radius: 100px;
     }
     
@@ -28,4 +29,66 @@
         border-radius: 100px;
     }
     
+}
+
+@mixin media-850px {
+    html {
+        font-size: 11px;
+    }
+}
+
+@mixin media-500px {
+    html {
+        overflow: hidden;
+    }
+    .studio {
+        div {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .recent-videos {
+            .video-container {
+                flex-direction: row;
+                overflow: scroll hidden;
+
+                .video {
+                    flex-direction: column;
+                    margin-left: 10px;
+
+                    span {
+                        margin-left: 0;
+                        max-width: 120px;
+                    }
+                }
+
+                .video:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+@mixin media-420px {
+    .studio {
+        .video-finder {
+            .video {
+                .video-box {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                section {
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+}
+
+@mixin media-375px {
+    html {
+        font-size: 8px;
+    }
 }

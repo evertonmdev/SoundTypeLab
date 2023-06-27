@@ -32,7 +32,7 @@ const Header = () => {
           :
           <div>
             <a href="/login">
-              <UserCircle2 size={20} />
+              <UserCircle2 size={22} />
               Entrar
             </a>
           </div>
