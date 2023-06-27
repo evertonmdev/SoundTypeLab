@@ -5,16 +5,16 @@ import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 
 
-const page = () => {
-    const [ Music, setMusic ] = useState({
+const Page = () => {
+    const [ music, setMusic ] = useState({
         Title: null,
         Thumbnail: null,
         Lyrics: null
     })
-    const [Audio , setAudio] = useState(null)
-    const AudioRef = useRef(null)
+    const [audio , setAudio] = useState(null)
+    const audioRef = useRef(null)
 
-    const [CurrentTime, setCurrentTime] = useState(0)
+    const [currentTime, setCurrentTime] = useState(0)
 
     const Send = async () => {
         const Link = await axios({
@@ -38,17 +38,17 @@ const page = () => {
 
 
     useEffect(() => {
-        if(Music.Title) {
+        if(music.Title) {
             Send()
         }
-    }, [Music])
+    }, [music])
 
     return (
         <main className="w-screen h-screen grid grid-cols-6 grid-rows-4 p-8 gap-4">
-            <img src={Music.Thumbnail} className="object-cover w-full h-full col-span-2 row-span-2 row-start-2" />
+            <img src={music.Thumbnail} className="object-cover w-full h-full col-span-2 row-span-2 row-start-2" />
             <div className="col-span-2 row-start-4 flex justify-center items-center gap-3 w-full h-full " >
                 { 
-                    Audio ? <Playback Title={Music.Title} src={Audio} audioRef={AudioRef} setCurrentTime={setCurrentTime} />
+                    audio ? <Playback Title={music.Title} src={audio} audioRef={audioRef} setCurrentTime={setCurrentTime} />
                     :<>
                        <h1 className="text-2xl font-mono text-white animate-pulse">LOADING...</h1>
                     </>
@@ -56,12 +56,12 @@ const page = () => {
             </div>
             <div className="col-span-4 row-span-2 row-start-2">
                 <h1 className="text-4xl font-bold text-white ">
-                    {Music.Title}
+                    {music.Title}
                 </h1>
                 <div className="w-full h-full overflow-scroll overflow-x-hidden transition-all mt-2">
                     {
-                        Music.Lyrics ? Music.Lyrics.map((e, i) => {
-                            const FraseAtual = parseInt(CurrentTime * 1000) > parseInt(e.startTimeMs) && parseInt(CurrentTime * 1000) < Music.Lyrics[parseInt(i + 1)]?.startTimeMs    
+                        music.Lyrics ? music.Lyrics.map((e, i) => {
+                            const FraseAtual = parseInt(currentTime * 1000) > parseInt(e.startTimeMs) && parseInt(currentTime * 1000) < music.Lyrics[parseInt(i + 1)]?.startTimeMs    
 
 
                             if(FraseAtual) {
@@ -83,4 +83,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

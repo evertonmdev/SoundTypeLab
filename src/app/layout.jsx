@@ -1,7 +1,9 @@
 import './globals.css';
 import "@/styles/styles.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 import Provider from '@/components/defaults/Provider';
+import { ToastContainer } from 'react-toastify';
 
 export const metadata = {
   title: 'SoundTypeLab',
@@ -14,6 +16,7 @@ export default function RootLayout({ children }) {
       <body>
         <Provider >
           {children}
+          <ToastContainer />
         </Provider>
       </body>
     </html>
