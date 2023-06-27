@@ -1,4 +1,4 @@
-import { StepsItem } from ".";
+import { StepsItem } from '@/components/defaults';
 
 import { Step1, Step2, Step3 } from '@/assets';
 

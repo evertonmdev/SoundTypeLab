@@ -1,16 +1,17 @@
 import InputStylized from "./InputStylized";
 import ButtonStylized from "./ButtonStylized";
-import LogInGoogleButton from "./LogInButton";
+import LogInGoogleButton from "./LogInGoogleButton";
 import LogOutGoogleButton from "./LogOutButton";
 import RecentVideos from "./RecentVideos";
 
 import CardVideo from "./CardVideo";
-import Header from "./Header";
+import LogInForm from "./LogInForm";
 import StepsItem from "./StepsItem";
-import Steps from "./Steps";
 
-import Introduction from "./Introduction";
-import Studio from "./Studio";
+import Header from "./sections/Header";
+import Introduction from "./sections/Introduction";
+import Studio from "./sections/Studio";
+import Steps from "./sections/Steps";
 
 export {
     InputStylized,
@@ -23,5 +24,6 @@ export {
     Steps,
     Introduction,
     RecentVideos,
-    StepsItem
+    StepsItem,
+    LogInForm
 }

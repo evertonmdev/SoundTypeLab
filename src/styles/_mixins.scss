@@ -23,28 +23,59 @@
         height: 8px;
         border-radius: 100px;
     }
-    
+
     ::-webkit-scrollbar-thumb {
         background-color: $primary-color;
         border-radius: 100px;
     }
-    
+
 }
 
-@mixin media-850px {
+@mixin media-1050px {
     html {
-        font-size: 11px;
+        font-size: 12px;
+    }
+    .login {
+        section {
+            width: 50%;
+        }
     }
 }
 
-@mixin media-500px {
-    html {
-        overflow: hidden;
+@mixin media-700px {
+    .login {
+        section {
+            width: 80%;
+        }
     }
+    .studio {
+        .video-finder {
+            .video {
+                .video-box {
+                    display: flex;
+                    flex-direction: column;
+                }
+                section {
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+}
+
+@mixin media-600px {
     .studio {
         div {
             display: flex;
             flex-direction: column-reverse;
+        }
+
+        .video-finder {
+            .video {
+                section {
+                    margin-top: 15px;
+                }
+            }
         }
 
         .recent-videos {
@@ -70,25 +101,37 @@
     }
 }
 
-@mixin media-420px {
+@mixin media-375px {
+    html {
+        font-size: 10px;
+    }
+}
+
+@mixin media-fix-1 {
     .studio {
         .video-finder {
             .video {
                 .video-box {
-                    display: flex;
-                    flex-direction: column;
+                    display: grid;
+                    grid-template-columns: 46% 46%;
                 }
+            }
+        }
 
-                section {
-                    margin-top: 15px;
-                }
+        .recent-videos {
+            .video-container {
+                overflow: hidden scroll;
             }
         }
     }
 }
 
-@mixin media-375px {
-    html {
-        font-size: 8px;
+@mixin media-fix-2 {
+    .studio {
+        .recent-videos {
+            .video-container {
+                overflow: hidden scroll;
+            }
+        }
     }
 }

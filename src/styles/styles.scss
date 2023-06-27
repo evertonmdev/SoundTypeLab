@@ -43,21 +43,36 @@ header {
     }
 
     div {
+        display: flex;
+    }
+
+    .user {
         background-color: $secundary-color;
         padding: 12px 30px;
-        display: flex;
+        gap: 10px;
 
         a,
-        h1 {
+        h1,
+        button {
+            @include no-gaps;
             color: $title-icons-color;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: row;
             gap: 10px;
-            font-size: 18px;
+            font-size: 20px;
         }
 
+        a:hover,
+        h1:hover,
+        button:hover {
+            text-decoration: underline;
+        }
+    }
+    .user:hover {
+        background: $linear-gradient;
     }
 }
 
@@ -81,10 +96,57 @@ header {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        min-width: 320px;
-        max-width: 410px;
         width: 22%;
         gap: 25px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            a {
+                font-size: $utility-fontsize;
+                color: $title-icons-color;
+                align-self: end;
+            }
+
+            a:hover {
+                @include gradient-text;
+            }
+
+            .login-plugins {
+                justify-content: start;
+                width: 100%;
+                gap: 10px;
+
+                button:hover {
+                    background-color: $primary-color;
+                }
+
+                .google-plugin {
+                    padding: 15px;
+                    border-radius: 100%;
+                    background-color: $secundary-color;
+
+                    .icon {
+                        width: 35px;
+                        height: 35px;
+                    }
+                }
+            }
+
+            .login-button {
+                justify-content: center;
+
+                button {
+                    padding: 10px 100px;
+                    border-radius: 100px;
+                    background: $linear-gradient;
+                    font-size: $utility-fontsize;
+                    color: $title-icons-color;
+                }
+            }
+        }
 
         h1 {
             font-size: $title-fontsize;
@@ -96,44 +158,21 @@ header {
             display: flex;
         }
 
-        .login-plugins {
-            justify-content: start;
-            width: 100%;
-            gap: 10px;
-
-            button:hover {
-                background-color: $primary-color;
-            }
-
-            .google-plugin {
-                padding: 15px;
-                border-radius: 100%;
-                background-color: $secundary-color;
-            }
-        }
-
-        .login-button {
-            justify-content: center;
-
-            button {
-                padding: 10px 100px;
-                border-radius: 100px;
-                background: $linear-gradient;
-                color: $title-icons-color;
-            }
-        }
-
         .login-to-register {
             justify-content: end;
-            height: 20px;
+            height: 25px;
             align-items: center;
 
-            a {
+            .link {
                 color: $title-icons-color;
                 font-size: $utility-fontsize;
-
-                span:hover {
-                    font-size: 22px;
+                span {
+                    transition: ease 0.2s;
+                }
+            }
+            .link:hover {
+                span {
+                    font-size: 26px;
                     @include gradient-text;
                     cursor: pointer;
                 }
@@ -219,7 +258,11 @@ header {
 
             .video-container {
                 max-height: 260px;
-                overflow: hidden scroll;
+
+                h2 {
+                    font-size: $utility-fontsize;
+                    color: $title-icons-color
+                }
             }
 
             .video {
@@ -242,7 +285,7 @@ header {
                     text-overflow: ellipsis;
                     overflow: hidden;
                     white-space: nowrap;
-                    max-width: 250px;
+                    max-width: 60%;
                 }
             }
         }
@@ -270,8 +313,6 @@ header {
                 justify-content: center;
 
                 .video-box {
-                    display: grid;
-                    grid-template-columns: 46% 46%;
                     margin-block: 20px;
                     align-items: center;
 
@@ -373,16 +414,24 @@ header {
     }
 }
 
-@media screen and (max-width: 851px) {
-    @include media-850px;
+@media screen and (min-width: 700px) {
+    @include media-fix-1;
 }
 
-@media screen and (max-width: 501px) {
-    @include media-500px;
+@media screen and (min-width: 600px) {
+    @include media-fix-2;
 }
 
-@media screen and (max-width: 421px) {
-    @include media-420px;
+@media screen and (max-width: 1051px) {
+    @include media-1050px
+}
+
+@media screen and (max-width: 601px) {
+    @include media-600px;
+}
+
+@media screen and (max-width: 701px) {
+    @include media-700px;
 }
 
 @media screen and (max-width: 375px) {

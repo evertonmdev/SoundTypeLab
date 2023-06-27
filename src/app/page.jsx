@@ -7,7 +7,7 @@ import { Steps, Introduction, Studio, Header } from "@/components/defaults"
 export default function Home() {
   return (
     <main>
-      <Header />
+      <Header/>
       <Introduction />
       <Studio />
       <Steps />

@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import axios from 'axios';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ButtonStylized, CardVideo, InputStylized, RecentVideos } from '@/components/defaults';
 
 import LoadingAnimation from '@/components/animations/lottie/loading.json';
@@ -54,7 +54,7 @@ export default function Studio() {
                     <div className='video-container'>
                         {
                             RecentsMusics ? RecentsMusics.map((r, i) => <RecentVideos key={i} Title={r.Title} Thumbnail={r.Thumbnail} Lyrics={r.Lyrics} />)
-                                : <h2 className='text-ColorTwo text-sm font-mono h-[500px]'>Experimente buscar uma musica :)</h2>
+                                : <h2>Você ainda não pesquisou por músicas</h2>
                         }
                     </div>
                 </section>
@@ -67,7 +67,7 @@ export default function Studio() {
                         {
                             Loading ?
                                 <>
-                                    <Lottie animationData={LoadingAnimation} />
+                                    <Lottie animationData={LoadingAnimation}/>
                                 </>
                                 : ResponseData ?
                                     <CardVideo Title={ResponseData.Title} Thumbnail={ResponseData.Thumbnail} Lyrics={ResponseData.Lyrics} />
