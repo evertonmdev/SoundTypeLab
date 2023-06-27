@@ -10,13 +10,14 @@ export default function Studio() {
     const [NameMusic, setNameMusic] = useState(null)
     const [ResponseData, setResponseData] = useState(null)
     const [ErrorReq, setErrorReq] = useState(null)
+    const [RecentsMusics, setRecentsMusics] = useState(false)
 
     const [Loading, setLoading] = useState(false)
 
     const SendReq = async () => {
         setLoading(true)
         await axios.post('/api/posts', {
-            name_find: NameMusic
+            name_find: NameMusic + " sem introdução"
         }).then(r => {
             setResponseData({
                 Title: r.data.title,
@@ -29,6 +30,12 @@ export default function Studio() {
         })
         setLoading(false)
     }
+
+    useEffect(() => {
+        const RecentsMusics = localStorage.getItem("RecenttMusics") ? JSON.parse(localStorage.getItem("RecenttMusics")) : false
+        console.log(RecentsMusics)
+        setRecentsMusics(RecentsMusics)
+    }, [])
     return (
         <section className='studio'>
             <div className='title'>
@@ -42,15 +49,13 @@ export default function Studio() {
             <div>
                 <section className='recent-videos'>
                     <h1>
-                        Videos Recentes
+                        Musicas Recentes
                     </h1>
                     <div className='video-container'>
-                        <RecentVideos />
-                        <RecentVideos />
-                        <RecentVideos />
-                        <RecentVideos />
-                        <RecentVideos />
-                        <RecentVideos />
+                        {
+                            RecentsMusics ? RecentsMusics.map((r, i) => <RecentVideos key={i} Title={r.Title} Thumbnail={r.Thumbnail} Lyrics={r.Lyrics} />)
+                                : <h2 className='text-ColorTwo text-sm font-mono h-[500px]'>Experimente buscar uma musica :)</h2>
+                        }
                     </div>
                 </section>
                 <section className='video-finder'>
