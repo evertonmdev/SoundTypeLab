@@ -11,7 +11,7 @@ import Header from '@/components/defaults/Header';
 import Lottie from "lottie-react";
 import axios from 'axios';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ButtonStylized, CardVideo, InputStylized, RecentVideos } from '@/components/defaults';
 
 import LoadingAnimation from '@/components/animations/lottie/loading.json'
@@ -24,14 +24,13 @@ export default function Home() {
   const [NameMusic, setNameMusic] = useState(null)
   const [ResponseData, setResponseData] = useState(null)
   const [ErrorReq, setErrorReq] = useState(null)
-  const [RecentsMusics, setRecentsMusics] = useState(false)
 
   const [Loading, setLoading] = useState(false)
 
   const SendReq = async () => {
     setLoading(true)
     await axios.post('/api/posts', {
-      name_find: NameMusic + " sem introdução"
+      name_find: NameMusic
     }).then(r => {
       setResponseData({
         Title: r.data.title,
@@ -45,13 +44,6 @@ export default function Home() {
     setLoading(false) 
   }
 
-  useEffect(() => {
-    const RecentsMusics = localStorage.getItem("RecenttMusics")  ? JSON.parse(localStorage.getItem("RecenttMusics")) : false
-    console.log(RecentsMusics)
-    setRecentsMusics(RecentsMusics)
-  }, [])
-
-  
   return (
     <main>
       <Header />
@@ -74,13 +66,15 @@ export default function Home() {
         <div>
           <section className='recent-videos'>
             <h1>
-              Musicas Recentes
+              Videos Recentes
             </h1>
             <div className='video-container'>
-              {
-                RecentsMusics ? RecentsMusics.map((r, i) => <RecentVideos key={i} Title={r.Title} Thumbnail={r.Thumbnail} Lyrics={r.Lyrics} />)
-                : <h2 className='text-ColorTwo text-sm font-mono h-[500px]'>Experimente buscar uma musica :)</h2>
-              }
+              <RecentVideos />
+              <RecentVideos />
+              <RecentVideos />
+              <RecentVideos />
+              <RecentVideos />
+              <RecentVideos />
             </div>
           </section>
           <section className='video-finder'>

@@ -44,9 +44,9 @@ function CardVideo({ Title, Thumbnail, Lyrics }) {
 
 
   return (
-    <>
+    <div className='video-box'>
       <section>
-        <Image src={Thumbnail} width={400} height={200}/>
+        <img src={Thumbnail} />
         <span>
           {Title}
         </span>
@@ -65,7 +65,7 @@ function CardVideo({ Title, Thumbnail, Lyrics }) {
           </button>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 

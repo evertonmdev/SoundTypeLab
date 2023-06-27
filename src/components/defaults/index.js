@@ -6,6 +6,11 @@ import RecentVideos from "./RecentVideos";
 
 import CardVideo from "./CardVideo";
 import Header from "./Header";
+import StepsItem from "./StepsItem";
+import Steps from "./Steps";
+
+import Introduction from "./Introduction";
+import Studio from "./Studio";
 
 export {
     InputStylized,
@@ -14,5 +19,9 @@ export {
     ButtonStylized,
     CardVideo,
     Header,
-    RecentVideos
+    Studio,
+    Steps,
+    Introduction,
+    RecentVideos,
+    StepsItem
 }

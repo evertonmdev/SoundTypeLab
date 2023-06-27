@@ -13,13 +13,15 @@ body {
     overflow-x: hidden;
     background-color: $background-color;
     scroll-behavior: smooth;
+
+    font-size: 16px;
 }
 
 @include scroll-bar;
 
 header {
     width: 100%;
-    padding-left: 30px;
+    padding-left: 24px;
     box-sizing: border-box;
     position: absolute;
     top: 0;
@@ -28,22 +30,115 @@ header {
     align-items: center;
     backdrop-filter: blur(10px);
 
-    h1 {
-        font-size: 25px;
-        font-weight: $title-weight;
-        font-family: Arial, Helvetica, sans-serif;
-        @include gradient-text;
+    .logo {
+        cursor: pointer;
+
+        h1 {
+            font-size: 26px;
+            padding-block: 5px;
+            font-weight: $title-weight;
+            font-family: Arial, Helvetica, sans-serif;
+            @include gradient-text;
+        }
     }
 
     div {
         background-color: $secundary-color;
         padding: 12px 30px;
+        display: flex;
 
-        a {
+        a,
+        h1 {
             color: $title-icons-color;
-          
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            gap: 10px;
+            font-size: 18px;
         }
-      
+
+    }
+}
+
+.input-general {
+    background-color: $secundary-color;
+    color: $title-icons-color;
+    border-radius: 100px;
+    padding: 10px 20px;
+    width: 100%;
+    font-size: $utility-fontsize;
+}
+
+.login {
+    @include full-screen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    section {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        min-width: 320px;
+        max-width: 410px;
+        width: 22%;
+        gap: 25px;
+
+        h1 {
+            font-size: $title-fontsize;
+            color: $title-icons-color;
+            font-weight: $title-weight;
+        }
+
+        div {
+            display: flex;
+        }
+
+        .login-plugins {
+            justify-content: start;
+            width: 100%;
+            gap: 10px;
+
+            button:hover {
+                background-color: $primary-color;
+            }
+
+            .google-plugin {
+                padding: 15px;
+                border-radius: 100%;
+                background-color: $secundary-color;
+            }
+        }
+
+        .login-button {
+            justify-content: center;
+
+            button {
+                padding: 10px 100px;
+                border-radius: 100px;
+                background: $linear-gradient;
+                color: $title-icons-color;
+            }
+        }
+
+        .login-to-register {
+            justify-content: end;
+            height: 20px;
+            align-items: center;
+
+            a {
+                color: $title-icons-color;
+                font-size: $utility-fontsize;
+
+                span:hover {
+                    font-size: 22px;
+                    @include gradient-text;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }
 
@@ -57,13 +152,14 @@ header {
     gap: 20px;
 
     h1 {
-        font-size: 70px;
+        font-size: $bigtitle-fontsize * 1.5;
         color: $title-icons-color;
         font-weight: $title-weight;
     }
 
     p {
         color: $title-icons-color;
+        font-size: $text-fontsize;
     }
 
     button {
@@ -72,6 +168,7 @@ header {
         padding: 10px 40px;
         border-radius: 100px;
         color: $title-icons-color;
+        font-size: $utility-fontsize;
     }
 }
 
@@ -89,12 +186,12 @@ header {
 
         h1 {
             color: $title-icons-color;
-            font-size: 50px;
+            font-size: $bigtitle-fontsize;
             font-weight: $title-weight;
         }
 
         p {
-            font-size: 25px;
+            font-size: $title-fontsize;
             font-weight: $title-weight;
             @include gradient-text;
         }
@@ -115,15 +212,14 @@ header {
         .recent-videos {
             h1 {
                 color: $title-icons-color;
-                font-size: 25px;
+                font-size: $title-fontsize;
                 font-weight: $title-weight;
                 margin-bottom: 20px;
             }
 
             .video-container {
                 max-height: 260px;
-                overflow: scroll;
-                overflow-x: hidden;
+                overflow: hidden scroll;
             }
 
             .video {
@@ -134,13 +230,14 @@ header {
 
                 .thumbnail {
                     min-width: 120px;
+                    max-width: 120px;
                     height: 70px;
                     background-color: #ddd;
                 }
 
                 span {
                     color: $title-icons-color;
-                    font-size: 18px;
+                    font-size: $utility-fontsize;
                     margin-left: 15px;
                     text-overflow: ellipsis;
                     overflow: hidden;
@@ -152,14 +249,7 @@ header {
 
         .video-finder {
             .finder {
-                input {
-                    background-color: $secundary-color;
-                    color: $title-icons-color;
-                    border-radius: 100px;
-                    padding: 10px 20px;
-                    width: 100%;
-                }
-    
+
                 button {
                     background: $linear-gradient;
                     align-self: center;
@@ -168,52 +258,71 @@ header {
                     border-radius: 100px;
                     color: $title-icons-color;
                     margin-top: 20px;
+                    font-size: $utility-fontsize;
                 }
             }
+
             .video {
                 width: 100%;
-                display: grid;
-                grid-template-columns: 46% 46%;
-                margin-top: 20px;
+                display: flex;
+                margin-block: 20px;
                 align-items: center;
+                justify-content: center;
 
-                section {
-                    p, span {
-                        color: $title-icons-color;
-                    }
-                    p {
-                        text-align: center;
-                    }
-                    Image {
-                        object-fit: contain;
-                    }
+                .video-box {
+                    display: grid;
+                    grid-template-columns: 46% 46%;
+                    margin-block: 20px;
+                    align-items: center;
 
-                    .buttons {
-                        display: grid;
-                        grid-template-columns: 48% 4% 48%;
-                        padding-inline: 5%;
-                        width: 100%;
-                        background-color: $primary-color;
-                        border-radius: 100px;
-                        padding-block: 10px;
-                        margin-top: 20px;
+                    section {
 
-                        .separator {
-                            width: 2px;
-                            height: 100%;
-                            background-color: #FFF;
-                            justify-self: center;
+                        p,
+                        span {
+                            color: $title-icons-color;
+                            font-size: $utility-fontsize;
                         }
 
-                        button {
-                            color: $title-icons-color;
-                            font-size: 20px;
-                            font-weight: 400;
-                            cursor: pointer;
+                        p {
                             text-align: center;
                         }
-                        button:hover {
-                            background: radial-gradient(#000000, #44006e,#4A0078);;
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                            object-fit: contain;
+                            margin-bottom: 10px;
+                        }
+
+                        .buttons {
+                            display: grid;
+                            grid-template-columns: 48% 4% 48%;
+                            padding-inline: 5%;
+                            width: 100%;
+                            background-color: $primary-color;
+                            border-radius: 100px;
+                            padding-block: 10px;
+                            margin-top: 20px;
+
+                            .separator {
+                                width: 2px;
+                                height: 100%;
+                                background-color: #FFF;
+                                justify-self: center;
+                            }
+
+                            button {
+                                color: $title-icons-color;
+                                font-size: $utility-fontsize;
+                                font-weight: 400;
+                                cursor: pointer;
+                                text-align: center;
+                            }
+
+                            button:hover {
+                                background: radial-gradient(#000000, #44006e, #4A0078);
+                                ;
+                            }
                         }
                     }
                 }
@@ -233,7 +342,7 @@ header {
 
     h1 {
         color: $title-icons-color;
-        font-size: 25px;
+        font-size: $title-fontsize;
         font-weight: $title-weight;
     }
 
@@ -255,11 +364,27 @@ header {
             }
 
             span {
-                font-size: 16px;
+                font-size: $utility-fontsize;
                 font-weight: 300;
                 color: $title-icons-color;
                 text-align: justify;
             }
         }
     }
+}
+
+@media screen and (max-width: 851px) {
+    @include media-850px;
+}
+
+@media screen and (max-width: 501px) {
+    @include media-500px;
+}
+
+@media screen and (max-width: 421px) {
+    @include media-420px;
+}
+
+@media screen and (max-width: 375px) {
+    @include media-375px;
 }
