@@ -1,14 +1,11 @@
 import Image from 'next/image';
 
-export default function StepsItem(props) {
+export default function StepsItem({imgUrl, text}) {
     return (
         <section>
-            <h1>
-                {props.stepNumber}
-            </h1>
-            <Image src={props.imgUrl} className='image'/>
+            <Image src={imgUrl} className='image'/>
             <span>
-                {props.text}
+                {text}
             </span>
         </section>
     )

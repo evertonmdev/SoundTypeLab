@@ -72,6 +72,34 @@
             }
         }
     }
+
+    .steps {
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: space-around;
+            gap: 20px;
+    
+            section {
+                max-width: 300px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+    
+                Image {
+                    width: 100%;
+                    height: auto;
+                }
+    
+                span {
+                    font-size: $utility-fontsize;
+                    font-weight: 300;
+                    color: $title-icons-color;
+                }
+            }
+        }
+    }
 }
 
 @mixin media-600px {

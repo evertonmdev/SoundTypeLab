@@ -196,7 +196,7 @@ header {
     gap: 20px;
 
     h1 {
-        font-size: $bigtitle-fontsize * 1.5;
+        font-size: $bigtitle-fontsize * 1.4;
         color: $title-icons-color;
         font-weight: $title-weight;
     }
@@ -390,12 +390,14 @@ header {
         color: $title-icons-color;
         font-size: $title-fontsize;
         font-weight: $title-weight;
+        text-align: center;
     }
 
     div {
         display: flex;
         width: 100%;
-        justify-content: space-between;
+        justify-content: space-around;
+        align-items: center;
 
         section {
             max-width: 300px;
@@ -413,7 +415,7 @@ header {
                 font-size: $utility-fontsize;
                 font-weight: 300;
                 color: $title-icons-color;
-                text-align: justify;
+                text-align: center;
             }
         }
     }

@@ -6,24 +6,21 @@ export default function Steps () {
     return (
         <section className='steps'>
         <h1>
-          Passo a passo de como baixar seus vídeos
+          Recomendações para uma melhor utilização
         </h1>
         <div>
           <StepsItem
-            stepNumber='Passo 1'
             imgUrl={Step1}
-            text='Copie o link do vídeo que deseja baixar' />
+            text='Para uma melhor busca, insira o nome da música e o artista' />
           <StepsItem
-            stepNumber='Passo 2'
             imgUrl={Step2}
-            text='Cole o link copiado dentro da caixa indicada e clique para pesquisar' />
+            text="Assim que for encontrado clique em 'Sim' que automaticamente você será redirecionado" />
           <StepsItem
-            stepNumber='Passo 3'
             imgUrl={Step3}
-            text="Verifique se o vídeo bate com o desejado e clique em 'Sim'" />
+            text="Caso esteja logado, você terá acesso ao download da música" />
         </div>
         <h1>
-          Pronto, com isso feito seu download começará imediatamente!
+          Pronto! Com isso feito você pode aproveitar sua música
         </h1>
       </section>
     )
