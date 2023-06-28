@@ -19,7 +19,7 @@ const Page = () => {
     const Send = async () => {
         const Link = await axios({
             method: "POST",
-            url: "http://localhost:3000/api/GetYoutubeId",
+            url: `${window.location.origin}/api/GetYoutubeId`,
             data: {
                 name: music.Title
             }

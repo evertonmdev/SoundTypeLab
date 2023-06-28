@@ -8,7 +8,7 @@ export const SendCadastro = async () => {
 
     await axios({
         method: "POST",
-        url: "http://localhost:3000/api/Cadastro",
+        url: `${window.location.origin}/api/Cadastro`,
         data: {
             username: document.getElementById("username").value,
             email: document.getElementById("email").value,
