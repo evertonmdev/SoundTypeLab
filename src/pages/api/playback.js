@@ -13,13 +13,17 @@ export default async (req, res) => {
         return res.status(400).json({error: 'Bad Request'})
     }
 
-    const parsedLink = decodeURIComponent(req.query.link)
+    var parsedLink = decodeURIComponent(req.query.link)
 
+    if(parsedLink.split('&').length > 1){
+        parsedLink = parsedLink.split('&')[0]
+    } 
+    
     const output = await youtubeDl(parsedLink, {
         dumpSingleJson: true,
-        socketTimeout: 5000,
+        // socketTimeout: 5000,
     })
-    
+   
     const Formats = output.formats.map(e => {
         if(e.format_note && e.resolution == 'audio only' && e.format != "Default" ) {
             return {

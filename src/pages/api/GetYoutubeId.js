@@ -1,7 +1,8 @@
 "use server"; 
 
 import Chromium from '@sparticuz/chromium';
-import puppeteer from 'puppeteer-core';
+import playwrigh from 'playwright-core';
+ 
 
 const GetYoutubeId = async (req, res) => {
     if(req.method !== 'POST') {
@@ -11,7 +12,7 @@ const GetYoutubeId = async (req, res) => {
     const { name } = req.body
 
     try {
-        const browser = await puppeteer.launch({
+        const browser = await playwrigh.chromium.launch({
             headless: Chromium.headless,
             executablePath: await Chromium.executablePath,
             args: Chromium.args,
