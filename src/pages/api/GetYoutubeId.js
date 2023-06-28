@@ -1,5 +1,7 @@
 "use server"; 
-import puppeteer from "puppeteer";
+
+import Chromium from '@sparticuz/chromium';
+import puppeteer from 'puppeteer-core';
 
 const GetYoutubeId = async (req, res) => {
     if(req.method !== 'POST') {
@@ -10,11 +12,9 @@ const GetYoutubeId = async (req, res) => {
 
     try {
         const browser = await puppeteer.launch({
-            headless: 'new',
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-            ]
+            headless: Chromium.headless,
+            executablePath: await Chromium.executablePath,
+            args: Chromium.args,
         });
 
         req.once('close', async () => {
