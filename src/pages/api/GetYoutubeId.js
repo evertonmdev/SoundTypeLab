@@ -1,6 +1,6 @@
 "use server"; 
-import puppeteer from "puppeteer-core";
-
+import puppeteer from 'puppeteer-core';
+ 
 const GetYoutubeId = async (req, res) => {
     if(req.method !== 'POST') {
         return res.status(405).json({error: 'Method not allowed, please use POST'})

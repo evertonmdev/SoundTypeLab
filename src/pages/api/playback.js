@@ -12,9 +12,8 @@ export default async (req, res) => {
         return res.status(400).json({error: 'Bad Request'})
     }
 
-    const parsedLink = decodeURIComponent(req.query.link)
+    var parsedLink = decodeURIComponent(req.query.link)
 
-  
     const Title_Archive = decodeURIComponent(req.query.title).replace(/[^a-zA-Z0-9]/g, ' ').replace(/\s+/g, ' ').trim()
 
     res.setHeader('Content-Type', 'audio/*')
