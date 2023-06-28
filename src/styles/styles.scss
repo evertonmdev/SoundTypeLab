@@ -234,7 +234,7 @@ header {
             font-weight: $title-weight;
         }
 
-        p {
+        span {
             font-size: $title-fontsize;
             font-weight: $title-weight;
             @include gradient-text;

@@ -4,7 +4,7 @@ export default function Introduction() {
             <h1>
                 Seu site de tipografia
             </h1>
-            <p>Baixe vídeos diretamente do YouTube para o formato mp3</p>
+            <p>Procure por sua músicas preferidas e tenha uma sincronização perfeita com a letra</p>
             <button>Comece a baixar</button>
         </section>
     )
