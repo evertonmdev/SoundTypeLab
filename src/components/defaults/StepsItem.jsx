@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function RecentVideos(props) {
+export default function StepsItem(props) {
     return (
         <section>
             <h1>
