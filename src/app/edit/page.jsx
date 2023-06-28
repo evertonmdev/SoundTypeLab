@@ -21,7 +21,7 @@ const Page = () => {
             method: "POST",
             url: `${window.location.origin}/api/GetYoutubeId`,
             data: {
-                name: music.Title
+                name: music.Title + ' original lyrics'
             }
         })    
         setAudio(Link.data.link)

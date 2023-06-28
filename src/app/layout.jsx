@@ -2,7 +2,7 @@ import './globals.css';
 import "@/styles/styles.scss";
 import "react-toastify/dist/ReactToastify.css";
 
-import Head from 'next/head';
+import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 
 import Provider from '@/components/defaults/Provider';
@@ -31,6 +31,7 @@ export default function RootLayout({ children }) {
           <ToastContainer />
         </Provider>
       </body>
+      <Analytics />
     </html>
   )
 }

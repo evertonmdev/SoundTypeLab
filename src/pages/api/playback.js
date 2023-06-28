@@ -21,15 +21,11 @@ export default async (req, res) => {
     res.setHeader('Transfer-Encoding', 'chunked')
     res.setHeader('Accept-Ranges', 'bytes')
     res.setHeader('Content-Range', 'bytes 0-3827735/3827736')
-    res.setHeader('Cache-Control', 'no-cache')
     res.setHeader('Connection', 'keep-alive')
-    res.setHeader('Pragma', 'no-cache')
     res.setHeader('Expires', '0')
     res.setHeader('X-Content-Type-Options', 'nosniff')
     res.setHeader('X-XSS-Protection', '1; mode=block')
     res.setHeader('X-Frame-Options', 'DENY')
-    res.setHeader('Referrer-Policy', 'no-referrer')
-    res.setHeader('Content-Encoding', 'gzip')
 
     const output = youtubeDl(parsedLink, {
         filter: "audioonly",
