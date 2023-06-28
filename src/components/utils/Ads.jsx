@@ -15,7 +15,9 @@ const Ads = () => {
             >
 
             </ins>
-            <Script>
+            <Script
+                id='google-adsense-two'
+            >
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </Script>
         </div>
