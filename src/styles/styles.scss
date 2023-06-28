@@ -139,11 +139,16 @@ header {
                 justify-content: center;
 
                 button {
-                    padding: 10px 100px;
+                    width: 100%;
+                    padding-block: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     border-radius: 100px;
                     background: $linear-gradient;
                     font-size: $utility-fontsize;
                     color: $title-icons-color;
+                    gap: 10px
                 }
             }
         }
@@ -420,6 +425,10 @@ header {
 
 @media screen and (min-width: 600px) {
     @include media-fix-2;
+}
+
+@media screen and (max-width: 1801px) {
+    @include media-1800px;
 }
 
 @media screen and (max-width: 1051px) {

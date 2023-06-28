@@ -1,4 +1,4 @@
-const InputStylized = ({ onChange, placeholder, type, id, name }) => {
+const InputStylized = ({ onChange, placeholder, type, id, name, required }) => {
     return (
         <input
             type={type}

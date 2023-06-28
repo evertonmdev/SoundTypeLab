@@ -6,6 +6,7 @@ import RecentVideos from "./RecentVideos";
 
 import CardVideo from "./CardVideo";
 import LogInForm from "./LogInForm";
+import RegisterForm from './RegisterForm';
 import StepsItem from "./StepsItem";
 
 import Header from "./sections/Header";
@@ -18,6 +19,7 @@ export {
     LogInGoogleButton,
     LogOutGoogleButton,
     ButtonStylized,
+    RegisterForm,
     CardVideo,
     Header,
     Studio,
