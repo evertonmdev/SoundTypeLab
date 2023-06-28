@@ -12,9 +12,7 @@ const Playback = ({ src, audioRef, Title, setCurrentTime }) => {
 
 
     return (
-        <div>
-            <audio autoPlay ref={audioRef} src={`${window.location.origin}/api/playback?link=${encodeURIComponent(src)}&title=${encodeURIComponent(Title)}`} controls />
-        </div>
+        <audio autoPlay ref={audioRef} src={`${window.location.origin}/api/playback?link=${encodeURIComponent(src)}&title=${encodeURIComponent(Title)}`} controls />
     )
 }
 

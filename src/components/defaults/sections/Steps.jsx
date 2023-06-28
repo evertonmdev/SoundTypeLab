@@ -10,12 +10,15 @@ export default function Steps () {
         </h1>
         <div>
           <StepsItem
+            title='Pesquisar músicas'
             imgUrl={Step1}
             text='Para uma melhor busca, insira o nome da música e o artista' />
           <StepsItem
+            title='Tipografia'
             imgUrl={Step2}
             text="Assim que for encontrado clique em 'Sim' que automaticamente você será redirecionado" />
           <StepsItem
+            title='Baixar as músicas'
             imgUrl={Step3}
             text="Caso esteja logado, você terá acesso ao download da música" />
         </div>

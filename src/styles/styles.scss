@@ -71,6 +71,7 @@ header {
             text-decoration: underline;
         }
     }
+
     .user:hover {
         background: $linear-gradient;
     }
@@ -91,6 +92,7 @@ header {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
     // overflow: scroll;
     section {
         display: flex;
@@ -171,10 +173,12 @@ header {
             .link {
                 color: $title-icons-color;
                 font-size: $utility-fontsize;
+
                 span {
                     transition: ease 0.2s;
                 }
             }
+
             .link:hover {
                 span {
                     font-size: 26px;
@@ -397,14 +401,18 @@ header {
         display: flex;
         width: 100%;
         justify-content: space-around;
-        align-items: center;
+        gap: 20px;
 
         section {
-            max-width: 300px;
+            width: 300px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
+
+            h1 {
+                font-size: $text-fontsize;
+            }
 
             Image {
                 width: 100%;
@@ -415,7 +423,42 @@ header {
                 font-size: $utility-fontsize;
                 font-weight: 300;
                 color: $title-icons-color;
-                text-align: center;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+.edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    section {
+
+    }
+    .track-and-thumb {
+        img {
+            width: 200px;
+        }
+        
+    }
+    .lyrics {
+        h1 {
+            font-size: $title-fontsize;
+            color: $title-icons-color;
+            font-weight: $title-weight;
+        }
+    
+        div {
+            p, span {
+                font-size: $text-fontsize;
+                color: $title-icons-color;
+            }
+            .actual {
+                font-size: $title-fontsize;
+                @include gradient-text;
+                font-weight: $title-weight;
             }
         }
     }

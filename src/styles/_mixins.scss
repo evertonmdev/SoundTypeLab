@@ -79,6 +79,7 @@
             flex-direction: column;
             width: 100%;
             justify-content: space-around;
+            align-items: center;
             gap: 20px;
     
             section {
@@ -96,6 +97,7 @@
                     font-size: $utility-fontsize;
                     font-weight: 300;
                     color: $title-icons-color;
+                    text-align: center;
                 }
             }
         }
