@@ -1,6 +1,6 @@
 "use server"; 
-import puppeteer from "puppeteer-core";
-
+import puppeteer from 'puppeteer-core';
+ 
 const GetYoutubeId = async (req, res) => {
     if(req.method !== 'POST') {
         return res.status(405).json({error: 'Method not allowed, please use POST'})
@@ -10,7 +10,7 @@ const GetYoutubeId = async (req, res) => {
 
     try {
         const browser = await puppeteer.connect({
-            browserWSEndpoint: `wss://chrome.browserless.io?token=${SHADOW_BROWSER}`,
+            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`
         });
 
         req.once('close', async () => {
