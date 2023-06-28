@@ -57,9 +57,7 @@ header {
             @include no-gaps;
             color: $title-icons-color;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include container-center;
             flex-direction: row;
             gap: 10px;
             font-size: 20px;
@@ -88,9 +86,7 @@ header {
 
 .login {
     @include full-screen;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include container-center;
     flex-direction: column;
 
     // overflow: scroll;
@@ -143,9 +139,7 @@ header {
                 button {
                     width: 100%;
                     padding-block: 10px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include container-center;
                     border-radius: 100px;
                     background: $linear-gradient;
                     font-size: $utility-fontsize;
@@ -316,10 +310,8 @@ header {
 
             .video {
                 width: 100%;
-                display: flex;
+                @include container-center;
                 margin-block: 20px;
-                align-items: center;
-                justify-content: center;
 
                 .video-box {
                     margin-block: 20px;
@@ -430,46 +422,90 @@ header {
 }
 
 .edit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    section {
+    @include full-screen;
+    @include container-center;
 
-    }
-    .track-and-thumb {
-        img {
-            width: 200px;
-        }
-        
-    }
-    .lyrics {
-        h1 {
-            font-size: $title-fontsize;
-            color: $title-icons-color;
-            font-weight: $title-weight;
-        }
-    
-        div {
-            p, span {
-                font-size: $text-fontsize;
-                color: $title-icons-color;
+    .edit-container {
+
+        .thumb-track {
+            @include container-center;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 100%;
+            max-height: 100%;
+
+            img {
+                width: 80%;
             }
-            .actual {
+
+            .track {
+                width: 100%;
+                height: 55px;
+                display: flex;
+                gap: 10px;
+
+                section {
+                    background: $linear-gradient;
+                    width: 100%;
+                    @include container-center;
+                    border-radius: 100px;
+                    color: $title-icons-color;
+                    padding-inline: 30px;
+                    height: 100%;
+                }
+
+                .download-button {
+                    background: $linear-gradient;
+                    @include container-center;
+                    aspect-ratio: 1 / 1;
+                    height: 100%;
+                    width: max-content;
+                    border-radius: 100%;
+                    color: $title-icons-color;
+                }
+            }
+        }
+
+        .lyrics {
+            max-height: 100%;
+            clip-path: fill-box;
+            overflow: hidden;
+
+            h1 {
                 font-size: $title-fontsize;
-                @include gradient-text;
+                color: $title-icons-color;
                 font-weight: $title-weight;
             }
+
+            div {
+                max-height: 80%;
+                clip-path: fill-box;
+                overflow: hidden scroll;
+
+                p {
+                    font-size: $utility-fontsize;
+                    color: $title-icons-color;
+                }
+
+                .actual {
+                    display: inline-block;
+                    font-size: $text-fontsize;
+                    transition: all 0.2s;
+                    @include gradient-text;
+                    font-weight: $title-weight;
+                    
+                }
+            }
         }
     }
 }
 
-@media screen and (min-width: 700px) {
-    @include media-fix-1;
+@media screen {
+    @include media-fix;
 }
 
-@media screen and (min-width: 600px) {
-    @include media-fix-2;
+@media screen and (max-width: 1501px) {
+    @include media-1500px;
 }
 
 @media screen and (max-width: 1801px) {

@@ -16,13 +16,13 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
         const totalSeconds = Math.floor(milliseconds / 1000);
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
-      
+
         const formattedMinutes = String(minutes).padStart(2, '0');
         const formattedSeconds = String(seconds).padStart(2, '0');
-      
+
         return `${formattedMinutes}:${formattedSeconds}`;
-      };
-      
+    };
+
 
     useEffect(() => {
         load(url, {
@@ -45,42 +45,42 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
 
 
     return (
-        <div className="w-full h-16 flex justify-center items-center gap-5 ">
-            <div className="w-fit h-full px-14 rounded-full bg-gradient-to-br from-rose-900 to-indigo-900 text-white flex justify-between items-center p-4">
+        <>
+            <section>
                 {
                     loaded ? <>
-                            <div className="flex w-1/5 items-center justify-center">
-                                <button onClick={togglePlayPause}>
-                                    {
-                                        playing 
-                                        ? <PauseIcon /> 
+                        <div className="flex w-1/5 items-center justify-center">
+                            <button onClick={togglePlayPause}>
+                                {
+                                    playing
+                                        ? <PauseIcon />
                                         : <PlayIcon />
-                                    }
-                                </button>
-                            </div>
-                            <div className="w-18 h-full flex items-center justify-start px-5 font-light text-lg">
-                                    {
-                                        progress
-                                    }
-                            </div>
-                            <div className="w-1/5 h-full flex items-center justify-center text-3xl" >
-                                    <button onClick={() => mute(!muted)}>
-                                        {
-                                            !muted 
-                                            ? <BsFillVolumeUpFill />
-                                            : <BsFillVolumeMuteFill />
-                                        }
-                                    </button>
-                            </div>
+                                }
+                            </button>
+                        </div>
+                        <div className="w-18 h-full flex items-center justify-start px-5 font-light text-lg">
+                            {
+                                progress
+                            }
+                        </div>
+                        <div className="w-1/5 h-full flex items-center justify-center text-3xl" >
+                            <button onClick={() => mute(!muted)}>
+                                {
+                                    !muted
+                                        ? <BsFillVolumeUpFill />
+                                        : <BsFillVolumeMuteFill />
+                                }
+                            </button>
+                        </div>
                     </>
-                    : <h1 className="text-2xl font-mono text-white animate-pulse">LOADING...</h1>
+                        : <h1 className="text-2xl font-mono text-white animate-pulse">LOADING...</h1>
                 }
-            </div>
+            </section>
 
-            <button onClick={() => console.log("Callback de download")} className=" p-5 rounded-full  bg-gradient-to-br from-rose-900 to-indigo-900 flex justify-center items-center text-white">
+            <button onClick={() => console.log("Callback de download")} className="download-button">
                 <Download size={30} />
             </button>
-        </div>
+        </>
     )
 
 }

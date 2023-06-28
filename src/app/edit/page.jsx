@@ -13,7 +13,7 @@ const Page = () => {
         Thumbnail: null,
         Lyrics: null
     })
-    const [audio , setAudio] = useState(null)
+    const [audio, setAudio] = useState(null)
     const audioRef = useRef(null)
 
     const [currentTime, setCurrentTime] = useState(0)
@@ -25,7 +25,7 @@ const Page = () => {
             data: {
                 name: music.Title + ' original lyrics'
             }
-        })    
+        })
         setAudio(Link.data.link)
     }
 
@@ -46,41 +46,46 @@ const Page = () => {
     }, [music])
 
     return (
-        <main className="w-screen h-screen grid grid-cols-6 grid-rows-4 p-8 gap-4">
-            <img src={music.Thumbnail} className="object-cover w-full h-full col-span-2 row-span-2 row-start-2" />
-            <div className="col-span-2 row-start-4 flex justify-center items-center gap-3 w-full h-full " >
-                { 
-                    audio ? <Playback Title={music.Title} src={audio} audioRef={audioRef} setCurrentTime={setCurrentTime} />
-                    :<>
-                       <h1 className="text-2xl font-mono text-white animate-pulse">LOADING...</h1>
-                    </>
-                }
+        <main className="edit">
+            <div className="edit-container">
+                <section className="thumb-track">
+                    <img src={music.Thumbnail} />
+                    <div className="track">
+                        {
+                            audio ? <Playback Title={music.Title} src={audio} audioRef={audioRef} setCurrentTime={setCurrentTime} />
+                                :
+                                <>
+                                    <h1 className="text-2xl font-mono text-white animate-pulse">Carregando...</h1>
+                                </>
+                        }
+                    </div>
+                </section>
+                <section className="lyrics">
+                    <h1>
+                        {music.Title}
+                    </h1>
+                    <div>
+                        {
+                            music.Lyrics ? music.Lyrics.map((e, i) => {
+                                const FraseAtual = parseInt(currentTime * 1000) > parseInt(e.startTimeMs) && parseInt(currentTime * 1000) < music.Lyrics[parseInt(i + 1)]?.startTimeMs
+
+
+                                if (FraseAtual) {
+                                    return <p key={i} className="actual">
+                                        {e.words}
+                                    </p>
+                                } else {
+                                    return <p key={i}>
+                                        {e.words}
+                                    </p>
+                                }
+
+
+                            }) : null
+                        }
+                    </div>
+                </section>
             </div>
-            <div className="col-span-4 row-span-2 row-start-2">
-                <h1 className="text-4xl font-bold text-white ">
-                    {music.Title}
-                </h1>
-                <div>
-                    {
-                        music.Lyrics ? music.Lyrics.map((e, i) => {
-                            const FraseAtual = parseInt(currentTime * 1000) > parseInt(e.startTimeMs) && parseInt(currentTime * 1000) < music.Lyrics[parseInt(i + 1)]?.startTimeMs
-
-
-                            if (FraseAtual) {
-                                return <span key={i} className="actual">
-                                    {e.words}
-                                </span>
-                            } else {
-                                return <p key={i}>
-                                    {e.words}
-                                </p>
-                            }
-
-
-                        }) : null
-                    }
-                </div>
-            </section>
         </main>
     )
 }
