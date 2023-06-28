@@ -1,6 +1,6 @@
 "use server"; 
 
-import Chromium from '@sparticuz/chromium';
+import Chromium from 'chrome-aws-lambda';
 import playwrigh from 'playwright-core';
  
 
