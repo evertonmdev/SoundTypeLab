@@ -30,12 +30,21 @@ export default async (req, res) => {
     res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
     res.setHeader('Referrer-Policy', 'no-referrer')
     res.setHeader('Feature-Policy', 'microphone "none"; camera "none"')
-    
 
     const output = youtubeDl(parsedLink, {
         filter: "audioonly",
         quality: "highestaudio",
-    }).pipe(res)
+    })
+
+    req.once('close', async () => {
+        output.destroy();
+    })
+
+    output.on('finish', () => {
+        res.end()
+    })
+ 
+    output.pipe(res)
 }
 
 
