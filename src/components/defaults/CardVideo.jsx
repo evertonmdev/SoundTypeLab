@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Separator from '../utils/Separator';
 
 function CardVideo({ Title, Thumbnail, Lyrics }) {

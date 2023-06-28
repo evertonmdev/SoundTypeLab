@@ -1,7 +1,6 @@
 "use server";
 
-import axios from "axios";
-import youtubeDl from "youtube-dl-exec";
+import youtubeDl from "ytdl-core";
 import Ffmpeg from "fluent-ffmpeg";
 
 export default async (req, res) => {
@@ -15,33 +14,9 @@ export default async (req, res) => {
 
     const parsedLink = decodeURIComponent(req.query.link)
 
-    const output = await youtubeDl(parsedLink, {
-        dumpSingleJson: true,
-        socketTimeout: 5000,
-    })
-    
-    const Formats = output.formats.map(e => {
-        if(e.format_note && e.resolution == 'audio only' && e.format != "Default" ) {
-            return {
-                format: e.format_note,
-                url: e.url,
-            }
-        }
-        return null
-    }).filter(e => e != null)
-
-    const StreamPipeUrl = await axios({
-        method: 'GET',
-        url: Formats[4].url,
-        responseType: 'stream',
-        "headers": {
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-language": "pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-            "cache-control": "max-age=0",
-            "if-modified-since": "Wed, 22 Mar 2023 19:23:56 GMT",
-            "range": "bytes=0-3827735",
-            "upgrade-insecure-requests": "1"
-        },
+    const output = youtubeDl(parsedLink, {
+        filter: "audioonly",
+        quality: "highestaudio",
     })
 
     const Title_Archive = decodeURIComponent(req.query.title).replace(/[^a-zA-Z0-9]/g, ' ').replace(/\s+/g, ' ').trim()
@@ -61,7 +36,7 @@ export default async (req, res) => {
     res.setHeader('Referrer-Policy', 'no-referrer')
     res.setHeader('Content-Encoding', 'gzip')
 
-    Ffmpeg(StreamPipeUrl.data)
+    Ffmpeg(output)
         .audioBitrate(128)
         .format('mp3')
         .on('error', function(err) {
