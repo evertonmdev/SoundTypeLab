@@ -3,6 +3,7 @@ import { signIn, useSession } from "next-auth/react"
 import Link from "next/link";
 import { redirect } from "next/navigation"
 import { toast } from "react-toastify";
+import { ArrowRightCircle } from "lucide-react";
 
 export default function LogInForm() {
 
@@ -49,14 +50,15 @@ export default function LogInForm() {
                 </div>
 
                 <div className="login-button">
-                    <button type="submit">
-                        Entrar
+                    <button id="button" type="submit">
+                        <span>Entrar</span>
+                        <ArrowRightCircle />
                     </button>
                 </div>
             </form>
 
             <div className="login-to-register">
-                <Link className="link" href="/cadastro" target="_blank">
+                <Link className="link" href="/cadastro">
                     Ainda não possui uma conta? <span>Criar conta.</span>
                 </Link>
             </div>
