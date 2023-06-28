@@ -1,9 +1,6 @@
 "use server"; 
-
-import Chromium from 'chrome-aws-lambda';
 import puppeteer from 'puppeteer-core';
  
-
 const GetYoutubeId = async (req, res) => {
     if(req.method !== 'POST') {
         return res.status(405).json({error: 'Method not allowed, please use POST'})
@@ -12,10 +9,8 @@ const GetYoutubeId = async (req, res) => {
     const { name } = req.body
 
     try {
-        const browser = await puppeteer.launch({
-            headless: Chromium.headless,
-            executablePath: await Chromium.executablePath,
-            args: Chromium.args,
+        const browser = await puppeteer.connect({
+            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`
         });
 
         req.once('close', async () => {
