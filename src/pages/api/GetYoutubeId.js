@@ -10,7 +10,7 @@ const GetYoutubeId = async (req, res) => {
 
     try {
         const browser = await puppeteer.connect({
-            browserWSEndpoint: `wss://chrome.browserless.io?token=${SHADOW_BROWSER}`,
+            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`,
         });
 
         req.once('close', async () => {

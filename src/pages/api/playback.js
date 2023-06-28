@@ -1,7 +1,7 @@
 "use server";
 
 import youtubeDl from "ytdl-core";
-import Ffmpeg from "fluent-ffmpeg";
+// import Ffmpeg from "fluent-ffmpeg";
 
 export default async (req, res) => {
     if(req.method !== 'GET') {
@@ -14,11 +14,7 @@ export default async (req, res) => {
 
     const parsedLink = decodeURIComponent(req.query.link)
 
-    const output = youtubeDl(parsedLink, {
-        filter: "audioonly",
-        quality: "highestaudio",
-    })
-
+  
     const Title_Archive = decodeURIComponent(req.query.title).replace(/[^a-zA-Z0-9]/g, ' ').replace(/\s+/g, ' ').trim()
 
     res.setHeader('Content-Type', 'audio/*')
@@ -36,16 +32,22 @@ export default async (req, res) => {
     res.setHeader('Referrer-Policy', 'no-referrer')
     res.setHeader('Content-Encoding', 'gzip')
 
-    Ffmpeg(output)
-        .audioBitrate(128)
-        .format('mp3')
-        .on('error', function(err) {
-            console.log('An error occurred: ' + err.message);
-        })
-        .on('end', function() {
-            console.log('Processing finished !');
-        })
-        .pipe(res)
+    const output = youtubeDl(parsedLink, {
+        filter: "audioonly",
+        quality: "highestaudio",
+    }).pipe(res)
+
+
+    // Ffmpeg(output)
+    //     .audioBitrate(128)
+    //     .format('mp3')
+    //     .on('error', function(err) {
+    //         console.log('An error occurred: ' + err.message);
+    //     })
+    //     .on('end', function() {
+    //         console.log('Processing finished !');
+    //     })
+    //     .pipe()
 }
 
 
