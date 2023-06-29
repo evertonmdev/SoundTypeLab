@@ -1,6 +1,6 @@
 "use client";
 
-import { Circle, Download, PauseIcon, PlayIcon, Pointer } from "lucide-react"
+import {  Download, PauseIcon, PlayIcon } from "lucide-react"
 import { BsCircleFill, BsFillVolumeMuteFill, BsFillVolumeUpFill } from 'react-icons/bs'
 import { useEffect, useState } from "react"
 
@@ -8,13 +8,14 @@ import { useSession } from "next-auth/react";
 
 import { useAudioPlayer } from "react-use-audio-player"
 import { GetDownloadLink } from "../utils/Sends"
+import { toast } from "react-toastify";
 
 const Playback = ({ src, Title, setCurrentTime, duration }) => {
     const { data: session } = useSession()
 
 
     const url = `${window.location.origin}/api/playback?link=${encodeURIComponent(src)}&title=${encodeURIComponent(Title)}`
-    const { togglePlayPause, playing, load, getPosition, mute, muted } = useAudioPlayer()
+    const { togglePlayPause, playing, load, getPosition, mute, muted , error} = useAudioPlayer()
     const [loaded, setLoaded] = useState(false)
     const [progress, setProgress] = useState("0:00")
 
@@ -30,6 +31,9 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
         return `${formattedMinutes}:${formattedSeconds}`;
     };
 
+    useEffect(() => {
+        if(error) toast.error("Lamento mas a musica tem mais de 4 minutos e devido as limitações não foi possivel fazer o stream", {theme: 'dark'})   
+    }, [error])
 
     useEffect(() => {
         load(url, {
@@ -39,13 +43,12 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
             onload: () => setLoaded(true)
         })
 
-        console.log(session)
+       
         console.log('loop', new Date().toISOString())
         const interval = setInterval(() => {
             const position = getPosition()
             setCurrentTime(position)
             setProgress(((position * 1000) / duration) * 100)
-
         }, 100)
 
         return () => clearInterval(interval)
@@ -84,7 +87,9 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
                             </button>
                         </div>
                     </>
-                        : <h1 className="text-2xl font-mono text-white animate-pulse">LOADING...</h1>
+                    : error ? 
+                        <h1 className="text-2xl font-mono text-red-600 animate-pulse">Error</h1>
+                    : <h1 className="text-2xl font-mono text-white animate-pulse">LOADING...</h1>
                 }
             </section>
 
