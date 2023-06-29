@@ -1,7 +1,7 @@
 "use client";
 
-import { Download, PauseIcon, PlayIcon } from "lucide-react"
-import { BsFillVolumeMuteFill, BsFillVolumeUpFill } from 'react-icons/bs'
+import { Circle, Download, PauseIcon, PlayIcon, Pointer } from "lucide-react"
+import { BsCircleFill, BsFillVolumeMuteFill, BsFillVolumeUpFill } from 'react-icons/bs'
 import { useEffect, useState } from "react"
 
 import { useSession } from "next-auth/react";
@@ -34,7 +34,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
     useEffect(() => {
         load(url, {
             autoplay: true,
-            format: 'webm',
+            format: 'mp3',
             // html5: true,
             onload: () => setLoaded(true)
         })
@@ -44,7 +44,8 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
         const interval = setInterval(() => {
             const position = getPosition()
             setCurrentTime(position)
-            setProgress(formatTime(parseFloat(position) * 1000))
+            setProgress(((position * 1000) / duration) * 100)
+
         }, 100)
 
         return () => clearInterval(interval)
@@ -57,7 +58,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
             <section>
                 {
                     loaded ? <>
-                        <div className="flex w-1/5 items-center justify-center">
+                        <div className="flex w-[10%] items-center justify-center">
                             <button onClick={togglePlayPause}>
                                 {
                                     playing
@@ -66,12 +67,14 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
                                 }
                             </button>
                         </div>
-                        <div className="w-18 h-full flex items-center justify-start px-5 font-light text-lg">
-                            {
-                                progress
-                            }
+                        <div className="w-[80%] h-full flex items-center justify-start font-light text-lg relative">
+                            <div className="bg-white/10 w-full h-[4px] absolute" />
+                            <div className="h-[2px] bg-white" style={{
+                                width: `${progress}%`,
+                            }} />
+                            <BsCircleFill size={10} />
                         </div>
-                        <div className="w-1/5 h-full flex items-center justify-center text-3xl" >
+                        <div className="w-[10%] h-full flex items-center justify-center text-3xl" >
                             <button onClick={() => mute(!muted)}>
                                 {
                                     !muted
