@@ -8,17 +8,20 @@ const GetYoutubeId = async (req, res) => {
 
     const { name } = req.body
 
-    try {
-        const browser = await puppeteer.connect({
-            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`,
-        });
+    const browser = await puppeteer.connect({
+        browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`,
+    });
 
+
+    try {
         req.once('close', async () => {
            await browser.close();
         })
 
+        const name_link = name.split(' ').length < 5 ? name + " official version  music spotify" : name
+
         const page = await browser.newPage();
-        await page.goto(`https://www.youtube.com/results?search_query=${name  + "lyrics sem introdução oficial"}`);
+        await page.goto(`https://www.youtube.com/results?search_query=${name_link}`);
         await page.waitForSelector('#contents > ytd-video-renderer[lockup="true"]');
         const link = await page.evaluate(() => {
             return document.querySelector('#contents > ytd-video-renderer > div > div > div > div > h3 > a').href
