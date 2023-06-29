@@ -1,5 +1,5 @@
 "use server"; 
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 
 const GetYoutubeId = async (req, res) => {
     if(req.method !== 'POST') {
@@ -9,19 +9,19 @@ const GetYoutubeId = async (req, res) => {
     const { name } = req.body
 
     try {
-        // const browser = await puppeteer.connect({
-        //     browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`,
-        // });
+        const browser = await puppeteer.connect({
+            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`,
+        });
 
         
-        const browser = await puppeteer.launch({
-            headless: 'new',
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-            ],
-        })
+        // const browser = await puppeteer.launch({
+        //     headless: 'new',
+        //     args: [
+        //         '--no-sandbox',
+        //         '--disable-setuid-sandbox',
+        //         '--disable-dev-shm-usage',
+        //     ],
+        // })
 
         req.once('close', async () => {
            await browser.close();
