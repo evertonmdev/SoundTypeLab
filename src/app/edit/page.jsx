@@ -1,10 +1,9 @@
 "use client";
 
-import Playback from "@/components/defaults/Playback";
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 
-
+import { Header, Playback } from '@/components/defaults';
 
 const Page = () => {
     const fraseAtual = useRef(null)
@@ -50,6 +49,7 @@ const Page = () => {
 
     return (
         <main className="edit">
+            <Header />
             <div className="edit-container">
                 <section className="thumb-track">
                     <img src={music.Thumbnail} />

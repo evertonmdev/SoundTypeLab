@@ -1,6 +1,6 @@
 "use client";
 
-import {  Download, PauseIcon, PlayIcon } from "lucide-react"
+import { Download, PauseIcon, PlayIcon } from "lucide-react"
 import { BsCircleFill, BsFillVolumeMuteFill, BsFillVolumeUpFill } from 'react-icons/bs'
 import { useEffect, useState } from "react"
 
@@ -15,7 +15,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
 
 
     const url = `${window.location.origin}/api/playback?link=${encodeURIComponent(src)}&title=${encodeURIComponent(Title)}`
-    const { togglePlayPause, playing, load, getPosition, mute, muted , error} = useAudioPlayer()
+    const { togglePlayPause, playing, load, getPosition, mute, muted, error } = useAudioPlayer()
     const [loaded, setLoaded] = useState(false)
     const [progress, setProgress] = useState("0:00")
 
@@ -32,7 +32,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
     };
 
     useEffect(() => {
-        if(error) toast.error("Lamento mas a musica tem mais de 4 minutos e devido as limitações não foi possivel fazer o stream", {theme: 'dark'})   
+        if (error) toast.error("Lamento mas a musica tem mais de 4 minutos e devido as limitações não foi possivel fazer o stream", { theme: 'dark' })
     }, [error])
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
             onload: () => setLoaded(true)
         })
 
-       
+
         console.log('loop', new Date().toISOString())
         const interval = setInterval(() => {
             const position = getPosition()
@@ -77,7 +77,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
                             }} />
                             <BsCircleFill size={10} />
                         </div>
-                        <div className="w-[10%] h-full flex items-center justify-center text-3xl" >
+                        <div className="volume-control" >
                             <button onClick={() => mute(!muted)}>
                                 {
                                     !muted
@@ -85,11 +85,14 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
                                         : <BsFillVolumeMuteFill />
                                 }
                             </button>
+                            <div className='slider'>
+                                <input type='range' />
+                            </div>
                         </div>
                     </>
-                    : error ? 
-                        <h1 className="text-2xl font-mono text-red-600 animate-pulse">Error</h1>
-                    : <h1 className="text-2xl font-mono text-white animate-pulse">LOADING...</h1>
+                        : error ?
+                            <h1 className="text-2xl font-mono text-red-600 animate-pulse">Error</h1>
+                            : <h1 className="text-2xl font-mono text-white animate-pulse">Carregando...</h1>
                 }
             </section>
 

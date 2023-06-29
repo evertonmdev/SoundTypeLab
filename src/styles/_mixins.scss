@@ -15,6 +15,7 @@
     background: $linear-gradient;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: brightness(160%);
 }
 
 @mixin full-screen {
@@ -37,6 +38,56 @@
 
 }
 
+@mixin chrome-input-range {
+    input[type=range]::-webkit-slider-runnable-track {
+        @include range-track;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        @include range-thumb;
+    }
+}
+
+@mixin mozzila-input-range {
+    input[type=range]::-moz-range-track {
+        @include range-track;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        @include range-thumb;
+    }
+}
+
+@mixin edge-input-range {
+    input[type=range]::-ms-track {
+        @include range-track;
+    }
+
+    input[type=range]::-ms-thumb {
+        @include range-thumb;
+    }
+}
+
+@mixin range-track {
+    background: $secundary-color;
+    height: 8px;
+    border-radius: 100px;
+    cursor: pointer;
+    appearance: none;
+    align-self: center;
+    justify-self: center;
+}
+
+@mixin range-thumb {
+    height: 15px;
+    width: 15px;
+    margin-top: -3px;
+    background-color: #FFF;
+    border-radius: 100%;
+    appearance: none;
+    cursor: pointer;
+}
+
 @mixin media-1800px {
     .login {
         section {
@@ -49,7 +100,6 @@
     .edit {
         .edit-container {
             width: 85%;
-            height: 100%;
             padding: 10%;
         }
     }
@@ -65,6 +115,7 @@
             width: 50%;
         }
     }
+
     .edit {
         .edit-container {
             @include container-center;
@@ -108,18 +159,18 @@
             justify-content: space-around;
             align-items: center;
             gap: 20px;
-    
+
             section {
                 max-width: 300px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-    
+
                 Image {
                     width: 100%;
                     height: auto;
                 }
-    
+
                 span {
                     font-size: $utility-fontsize;
                     font-weight: 300;
@@ -173,7 +224,8 @@
     html {
         font-size: 10px;
     }
-    .edit {    
+
+    .edit {
         .edit-container {
             .thumb-track {
                 .track {
@@ -201,6 +253,7 @@
             }
         }
     }
+
     .edit {
         .edit-container {
             display: grid;

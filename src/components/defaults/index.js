@@ -13,6 +13,7 @@ import Header from "./sections/Header";
 import Introduction from "./sections/Introduction";
 import Studio from "./sections/Studio";
 import Steps from "./sections/Steps";
+import Playback from "./Playback";
 
 export {
     InputStylized,
@@ -22,6 +23,7 @@ export {
     RegisterForm,
     CardVideo,
     Header,
+    Playback,
     Studio,
     Steps,
     Introduction,

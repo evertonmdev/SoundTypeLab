@@ -4,7 +4,12 @@
 * {
     @include no-gaps;
     font-family: $main-font;
-    box-sizing: border-box
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*:focus {
+    outline: none
 }
 
 html,
@@ -222,8 +227,7 @@ header {
     box-sizing: border-box;
 
     .title {
-        display: flex;
-        flex-direction: column;
+        display: inline-block;
         margin-bottom: 100px;
 
         h1 {
@@ -421,21 +425,55 @@ header {
     }
 }
 
+.volume-control {
+    padding: 1px;
+    @include container-center;
+    position: relative;
+
+    button {
+        @include container-center;
+    }
+
+    .slider {
+        display: none;
+        transform: rotate(90deg);
+
+        input[type=range] {
+            z-index: 100;
+            position: absolute;
+            padding: 10px;
+            left: 10px;
+            outline: none;
+            appearance: none;
+            background: transparent;
+        }
+        @include chrome-input-range;
+        @include mozzila-input-range;
+        @include edge-input-range;
+    }
+}
+.volume-control:hover .slider {
+    display: flex
+}
+
+
+
 .edit {
     @include container-center;
     width: 100vw;
     min-height: 100%;
-   
+
     .edit-container {
         width: 100%;
         height: 100%;
-        // background-color: red;
+
         .thumb-track {
             @include container-center;
             flex-direction: column;
             gap: 20px;
             max-width: 100%;
             max-height: 100%;
+
             img {
                 width: 80%;
             }
@@ -445,6 +483,8 @@ header {
                 height: 55px;
                 display: flex;
                 gap: 10px;
+                align-items: center;
+                justify-content: center;
 
                 section {
                     background: $linear-gradient;
@@ -456,6 +496,10 @@ header {
                     height: 100%;
                     gap: 1rem;
                     display: flex;
+
+                    button {
+                        font-size: 25px;
+                    }
                 }
 
                 .download-button {
@@ -497,7 +541,7 @@ header {
                     transition: all 0.2s;
                     @include gradient-text;
                     font-weight: $title-weight;
-                    
+
                 }
             }
         }
