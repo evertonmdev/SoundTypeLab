@@ -11,6 +11,7 @@ const Page = () => {
     const [music, setMusic] = useState({
         Title: null,
         Thumbnail: null,
+        duration: null,
         Lyrics: null
     })
     const [audio, setAudio] = useState(null)
@@ -35,7 +36,6 @@ const Page = () => {
         const MusicSelected = localStorage.getItem("MusicSelected")
         const MusicSelectedParsed = JSON.parse(MusicSelected)
         setMusic(MusicSelectedParsed)
-        console.log(MusicSelectedParsed)
     }, [])
 
     useEffect(() => {
@@ -45,9 +45,7 @@ const Page = () => {
     }, [fraseAtual.current])
 
     useEffect(() => {
-        if (music.Title) {
-            Send()
-        }
+        if (music.Title) Send()
     }, [music])
 
     return (
@@ -57,7 +55,7 @@ const Page = () => {
                     <img src={music.Thumbnail} />
                     <div className="track">
                         {
-                            audio ? <Playback Title={music.Title} src={audio} audioRef={audioRef} setCurrentTime={setCurrentTime} />
+                            audio ? <Playback Title={music.Title} duration={music.duration} src={audio} audioRef={audioRef} setCurrentTime={setCurrentTime} />
                                 :
                                 <>
                                     <h1 className="text-2xl font-mono text-white animate-pulse">Carregando...</h1>

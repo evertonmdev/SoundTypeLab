@@ -454,6 +454,8 @@ header {
                     color: $title-icons-color;
                     padding-inline: 30px;
                     height: 100%;
+                    gap: 1rem;
+                    display: flex;
                 }
 
                 .download-button {

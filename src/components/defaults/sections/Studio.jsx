@@ -8,7 +8,9 @@ import LoadingAnimation from '@/components/animations/lottie/loading.json';
 
 export default function Studio() {
     const [NameMusic, setNameMusic] = useState(null)
-    const [ResponseData, setResponseData] = useState(null)
+    const [ResponseData, setResponseData] = useState({
+        ArrayMusics: null
+    })
     const [ErrorReq, setErrorReq] = useState(null)
     const [RecentsMusics, setRecentsMusics] = useState(false)
 
@@ -16,13 +18,19 @@ export default function Studio() {
 
     const SendReq = async () => {
         setLoading(true)
+        setErrorReq(null)
+        setResponseData({
+            ArrayMusics: null
+        })
+
         await axios.post('/api/posts', {
-            name_find: NameMusic + " sem introdução"
+            name_find: NameMusic
         }).then(r => {
+            if(!r.data?.arrayMusics[0]) {
+                setErrorReq("Não foi possivel encontrar a musica ou letra sincronizada indisponivel")
+            }
             setResponseData({
-                Title: r.data.title,
-                Thumbnail: r.data.thumbnail,
-                Lyrics: r.data.lyrics
+                ArrayMusics: r.data.arrayMusics
             })
         }).catch(e => {
             console.log(e)
@@ -69,11 +77,11 @@ export default function Studio() {
                                 <>
                                     <Lottie animationData={LoadingAnimation}/>
                                 </>
-                                : ResponseData ?
-                                    <CardVideo Title={ResponseData.Title} Thumbnail={ResponseData.Thumbnail} Lyrics={ResponseData.Lyrics} />
-                                    : ErrorReq ?
-                                        <h1 className='text-ColorTwo'>{ErrorReq}</h1>
-                                        : null
+                                : ErrorReq ?
+                                    <h1 className='text-ColorTwo'>{ErrorReq}</h1>
+                                : ResponseData.ArrayMusics ?
+                                   <CardVideo ArrayMusics={ResponseData.ArrayMusics} />
+                                : null
                         }
                     </div>
                 </section>

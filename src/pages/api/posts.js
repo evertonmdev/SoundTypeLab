@@ -14,8 +14,10 @@ const CreateAuthorizationBearer = async () => {
         }
     }).catch(e => {
         console.log('Erro no CreateAuthorizationBearer ======//====== ')
-        console.log(e.response.data)
 
+        if(e.response?.data) console.log(e.response?.data)
+        else console.log(e)
+        
         return false
     })
 
@@ -24,36 +26,9 @@ const CreateAuthorizationBearer = async () => {
      return "Bearer " + res.data?.accessToken;
 }
 
-
-const GetIdTrackByName = async (name, bearer) => {
-    try {
-        const res = await axios({
-            method: "GET",
-            url: `https://api.spotify.com/v1/search?q=${name}&type=track&limit=1`,
-            headers: {
-                "authorization": bearer,
-            }
-        })
-
-        console.log(res.data.tracks.items[0].id)
-
-        return {
-            id: res.data.tracks.items[0].id,
-            name: res.data.tracks.items[0].name,
-            artist: res.data.tracks.items[0].artists[0].name,
-            image: res.data.tracks.items[0].album.images[0].url,
-        }
-    } catch (e) {
-        console.log('Erro no GetIdTrackByName ======//====== ')
-        console.log(e.response.data)
-
-        return false
-    }
-}
-
 const GetLyrics = async (Id, Bearer) => {
     const res = await axios({
-        method: "get",
+        method: "GET",
         url: `https://spclient.wg.spotify.com/color-lyrics/v2/track/${Id}?format=json&vocalRemoval=false&market=from_token`,
         headers: {
             "accept": "application/json",
@@ -67,25 +42,68 @@ const GetLyrics = async (Id, Bearer) => {
             "credentials": "include"
         }
     }).catch(e => {
-        console.log('Erro no GetLyrics ======//====== ')
-        console.log(e.response.data)
+        if(e.response?.data) console.log(e.response?.data)
+        else console.log(e)
 
         return false
     })
 
-    if(!res)  return {
+    if(!res) return {
         error: true,
-        message: "Err to get lyrics"
+        message: 'Erro ao encontrar a letra da musica'
     }
 
     if(res.data?.lyrics?.syncType != 'LINE_SYNCED' ) {
         return {
             error: true,
-            message: "Lyrics not compatible"
+            message: 'A letra disponivel no spotify não é sincronizada'
         }
     }
 
     return res.data?.lyrics?.lines
+}
+
+
+
+const GetIdTrackByName = async (name, bearer) => {
+    try {
+        const res = await axios({
+            method: "GET",
+            url: `https://api.spotify.com/v1/search?q=${name}&type=track&limit=7`,
+            headers: {
+                "authorization": bearer,
+            }
+        })
+
+        if(!res.data?.tracks?.items[0]) return false
+
+        const Musics = res.data.tracks.items.map(async (music) => {
+            const Lyrics = await GetLyrics(music.id, bearer)
+            if(Lyrics?.error) return null
+            
+            return {
+                id: music.id,
+                name: music.name,
+                artist: music.artists[0].name,
+                Title: `${music.name} - ${music.artists[0].name}`,
+                Thumbnail: music.album.images[0].url,
+                duration: music.duration_ms,
+                Lyrics: Lyrics
+            }
+        })
+
+
+        const MusicsResolved = await Promise.all(Musics)
+
+        return {
+            returned_musics: MusicsResolved.filter(e => e != null)
+        }
+    } catch (e) {
+        if(e.response?.data) console.log(e.response?.data)
+        else console.log(e)
+
+        return false
+    }
 }
 
 
@@ -97,26 +115,17 @@ export default async function GetLyricsByName(req, res) {
     }
 
     const { name_find } = req.body
+
+    if(!name_find) return res.status(400).json({error: 'Please send a name to find'})
     
     const Bearer = await CreateAuthorizationBearer()
     const Track = await GetIdTrackByName(name_find, Bearer)
 
-    if(!Track) return {
-        error: true,
-        message: "Track not found"
-    }
-
-    const Lyrics = await GetLyrics(Track.id, Bearer)
-
-    if(Lyrics?.error) return res.status(400).json(Lyrics.message)
+    if(!Track) return res.status(400).json({error: 'Não encontrei essa musica :/'})
 
     const res_json = {
-        title: `${Track.name} - ${Track.artist}`,
-        thumbnail: Track.image,
-        lyrics: Lyrics
+        arrayMusics: Track.returned_musics
     }
 
-    
-    console.log(res_json)
     return res.status(200).json(res_json)
 }

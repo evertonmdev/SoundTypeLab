@@ -1,11 +1,36 @@
+import { useEffect, useState } from 'react';
 import Separator from '../utils/Separator';
+import { toast } from 'react-toastify';
 
-function CardVideo({ Title, Thumbnail, Lyrics }) {
+function CardVideo({ ArrayMusics }) {
+  const [indexMusicSelected, setIndexMusicSelected] = useState(0)
+
+
+  const SetNextMusic = () => {
+    if(indexMusicSelected < ArrayMusics.length - 1) {
+      setIndexMusicSelected(indexMusicSelected + 1)
+    } else {
+      setIndexMusicSelected(0)
+      toast.info("Não encontrei outras musicas", {
+        theme: "dark",
+        position: "bottom-right",
+      })
+    }
+  }
+
+  const { Title, Thumbnail, Lyrics, duration } = ArrayMusics[indexMusicSelected]?.name ? ArrayMusics[indexMusicSelected] : {
+    Title: 'Nenhuma musica encontrada',
+    Thumbnail: '',
+    Lyrics: 'Nenhuma letra encontrada',
+    duration: 0
+  }
+
   const SetMusicSelected = () => {
     localStorage.setItem("MusicSelected", JSON.stringify({
         Title,
         Thumbnail,
-        Lyrics
+        Lyrics,
+        duration
       })
     )
 
@@ -59,9 +84,7 @@ function CardVideo({ Title, Thumbnail, Lyrics }) {
           Sim
         </button>
           <Separator />
-          <button onClick={() => {
-            window.location.href = '/'
-          }}>
+          <button onClick={SetNextMusic}>
             Não
           </button>
         </div>

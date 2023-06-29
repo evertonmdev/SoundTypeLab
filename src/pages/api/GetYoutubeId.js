@@ -14,12 +14,21 @@ const GetYoutubeId = async (req, res) => {
         });
 
         
+        // const browser = await puppeteer.launch({
+        //     headless: 'new',
+        //     args: [
+        //         '--no-sandbox',
+        //         '--disable-setuid-sandbox',
+        //         '--disable-dev-shm-usage',
+        //     ],
+        // })
+
         req.once('close', async () => {
            await browser.close();
         })
 
         const page = await browser.newPage();
-        await page.goto(`https://www.youtube.com/results?search_query=${name}`);
+        await page.goto(`https://www.youtube.com/results?search_query=${name  + "lyrics sem introdução oficial"}`);
         await page.waitForSelector('#contents > ytd-video-renderer[lockup="true"]');
         const link = await page.evaluate(() => {
             return document.querySelector('#contents > ytd-video-renderer > div > div > div > div > h3 > a').href
