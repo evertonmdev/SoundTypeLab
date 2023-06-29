@@ -15,23 +15,25 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <Provider >
     <html lang="en">
-      <head>
-        <Script
-            id='google-adsense' 
-            async strategy='afterInteractive'
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7524664916655286" 
-            crossorigin="anonymous"
-          >
-        </Script>
-      </head>
-      <body>
-        <Provider >
-          {children}
-          <ToastContainer />
-        </Provider>
-      </body>
+      
+        <head>
+          <Script
+              id='google-adsense' 
+              async strategy='afterInteractive'
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7524664916655286" 
+              crossorigin="anonymous"
+            >
+          </Script>
+        </head>
+        <body>
+          
+            {children}
+            <ToastContainer />
+        </body>
       <Analytics />
     </html>
+    </Provider>
   )
 }

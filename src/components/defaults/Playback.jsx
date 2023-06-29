@@ -1,11 +1,18 @@
-import { ArrowBigDown, Download, PauseIcon, PlayIcon } from "lucide-react"
+"use client";
+
+import { Download, PauseIcon, PlayIcon } from "lucide-react"
 import { BsFillVolumeMuteFill, BsFillVolumeUpFill } from 'react-icons/bs'
 import { useEffect, useState } from "react"
 
+import { useSession } from "next-auth/react";
 
 import { useAudioPlayer } from "react-use-audio-player"
+import { GetDownloadLink } from "../utils/Sends"
 
 const Playback = ({ src, Title, setCurrentTime, duration }) => {
+    const { data: session } = useSession()
+
+
     const url = `${window.location.origin}/api/playback?link=${encodeURIComponent(src)}&title=${encodeURIComponent(Title)}`
     const { togglePlayPause, playing, load, getPosition, mute, muted } = useAudioPlayer()
     const [loaded, setLoaded] = useState(false)
@@ -32,6 +39,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
             onload: () => setLoaded(true)
         })
 
+        console.log(session)
         console.log('loop', new Date().toISOString())
         const interval = setInterval(() => {
             const position = getPosition()
@@ -77,7 +85,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
                 }
             </section>
 
-            <button onClick={() => console.log("Callback de download")} className="download-button">
+            <button id="buttondwn" onClick={() => GetDownloadLink(src, Title, session?.user?.email)} className="download-button">
                 <Download size={30} />
             </button>
         </>

@@ -1,7 +1,6 @@
 "use server"; 
 import puppeteer from 'puppeteer-core';
-import puppeteerDev from 'puppeteer';
- 
+
 const GetYoutubeId = async (req, res) => {
     if(req.method !== 'POST') {
         return res.status(405).json({error: 'Method not allowed, please use POST'})
@@ -10,19 +9,11 @@ const GetYoutubeId = async (req, res) => {
     const { name } = req.body
 
     try {
-        // const browser = await puppeteer.connect({
-        //     browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`,
-        // });
-
-        const browser = await puppeteerDev.launch({
-            headless: 'new',
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-            ],
+        const browser = await puppeteer.connect({
+            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.SHADOW_BROWSER}`,
         });
 
+        
         req.once('close', async () => {
            await browser.close();
         })
@@ -34,6 +25,7 @@ const GetYoutubeId = async (req, res) => {
             return document.querySelector('#contents > ytd-video-renderer > div > div > div > div > h3 > a').href
         }
         );
+
         await browser.close();
         
         return res.status(200).json({
@@ -41,6 +33,8 @@ const GetYoutubeId = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
+        await browser.close();
+        
         return res.status(500).json({error: 'Internal Server Error'})
     }
 

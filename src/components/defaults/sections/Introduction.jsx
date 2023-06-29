@@ -5,7 +5,9 @@ export default function Introduction() {
                 Seu site de tipografia
             </h1>
             <p>Procure por sua músicas preferidas e tenha uma sincronização perfeita com a letra</p>
-            <button>Comece a baixar</button>
+            <button onClick={() =>{ 
+                window.location.href = '#search'
+            }}>Comece a baixar</button>
         </section>
     )
 }

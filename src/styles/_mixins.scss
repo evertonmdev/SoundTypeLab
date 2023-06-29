@@ -18,7 +18,7 @@
 }
 
 @mixin full-screen {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 }
 
@@ -49,6 +49,8 @@
     .edit {
         .edit-container {
             width: 85%;
+            height: 100%;
+            padding: 10%;
         }
     }
 }
@@ -204,7 +206,7 @@
             display: grid;
             width: 60%;
             height: 50%;
-            max-height: 50%;
+            // max-height: 50%;
             grid-template-columns: 47% 47%;
             justify-content: center;
             gap: 20px;

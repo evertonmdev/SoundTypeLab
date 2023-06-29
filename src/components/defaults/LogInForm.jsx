@@ -42,7 +42,7 @@ export default function LogInForm() {
                 <InputStylized id="password" type="password" name="password" placeholder="Senha" />
 
                 <>
-                    <a href="#" class="password-forgotten">Esqueceu sua senha?</a>
+                    <a href="#" className="password-forgotten">Esqueceu sua senha?</a>
                 </>
 
                 <div className="login-plugins">

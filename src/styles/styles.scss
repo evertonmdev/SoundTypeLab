@@ -422,18 +422,20 @@ header {
 }
 
 .edit {
-    @include full-screen;
     @include container-center;
-
+    width: 100vw;
+    min-height: 100%;
+   
     .edit-container {
-
+        width: 100%;
+        height: 100%;
+        // background-color: red;
         .thumb-track {
             @include container-center;
             flex-direction: column;
             gap: 20px;
             max-width: 100%;
             max-height: 100%;
-
             img {
                 width: 80%;
             }
@@ -478,7 +480,7 @@ header {
             }
 
             div {
-                max-height: 80%;
+                max-height: 50vh;
                 clip-path: fill-box;
                 overflow: hidden scroll;
 

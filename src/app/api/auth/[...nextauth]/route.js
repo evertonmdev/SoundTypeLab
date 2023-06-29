@@ -8,7 +8,7 @@ const client = new PrismaClient();
 
 export const authOptions = {
   // Configure one or more authentication providers
-  secret: process.env.SECRET,
+  // secret: process.env.SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,

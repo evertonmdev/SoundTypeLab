@@ -59,7 +59,9 @@ function CardVideo({ Title, Thumbnail, Lyrics }) {
           Sim
         </button>
           <Separator />
-          <button>
+          <button onClick={() => {
+            window.location.href = '/'
+          }}>
             Não
           </button>
         </div>
