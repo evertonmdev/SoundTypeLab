@@ -3,11 +3,11 @@
 import Playback from "@/components/defaults/Playback";
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
 
-import { Header } from '@/components/defaults'
+
 
 const Page = () => {
+    const fraseAtual = useRef(null)
     const [music, setMusic] = useState({
         Title: null,
         Thumbnail: null,
@@ -23,7 +23,7 @@ const Page = () => {
             method: "POST",
             url: `${window.location.origin}/api/GetYoutubeId`,
             data: {
-                name: music.Title + ' original lyrics'
+                name: music.Title + ' original lyrics sem introdução'
             }
         })
         setAudio(Link.data.link)
@@ -38,6 +38,11 @@ const Page = () => {
         console.log(MusicSelectedParsed)
     }, [])
 
+    useEffect(() => {
+        if (fraseAtual.current) {
+            fraseAtual.current.scrollIntoView({ behavior: "smooth", block: "center" })
+        }
+    }, [fraseAtual.current])
 
     useEffect(() => {
         if (music.Title) {
@@ -71,7 +76,7 @@ const Page = () => {
 
 
                                 if (FraseAtual) {
-                                    return <p key={i} className="actual">
+                                    return <p key={i} ref={fraseAtual} className="actual">
                                         {e.words}
                                     </p>
                                 } else {
