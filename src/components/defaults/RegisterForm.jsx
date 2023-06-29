@@ -16,9 +16,9 @@ export default function RegisterForm() {
         <section>
             <h1>Cadastro</h1>
             <form onSubmit={Send}>
-                <InputStylized id="username" className="w-3/5 p-2 rounded-xl bg-stone-700 text-stone-100" type="text" placeholder="Username" />
-                <InputStylized id="email" className="w-3/5 p-2 rounded-xl bg-stone-700 text-stone-100" type="email" placeholder="Email" />
-                <InputStylized id="password" className="w-3/5 p-2 rounded-xl bg-stone-700 text-stone-100" type="password" placeholder="Senha" />
+                <InputStylized id="username" className="w-3/5 p-2 rounded-xl bg-stone-700 text-stone-100" type="text" required={true} placeholder="Username" />
+                <InputStylized id="email" className="w-3/5 p-2 rounded-xl bg-stone-700 text-stone-100" type="email" required={true}  placeholder="Email" />
+                <InputStylized id="password" className="w-3/5 p-2 rounded-xl bg-stone-700 text-stone-100" type="password" required={true}  placeholder="Senha" />
                 <div className="login-plugins">
                     <LogInGoogleButton />
                 </div>

@@ -4,8 +4,10 @@ export default function Introduction() {
             <h1>
                 Seu site de tipografia
             </h1>
-            <p>Baixe vídeos diretamente do YouTube para o formato mp3</p>
-            <button>Comece a baixar</button>
+            <p>Procure por sua músicas preferidas e tenha uma sincronização perfeita com a letra</p>
+            <button onClick={() =>{ 
+                window.location.href = '#search'
+            }}>Comece a baixar</button>
         </section>
     )
 }

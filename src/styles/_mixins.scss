@@ -5,6 +5,12 @@
     padding: 0;
 }
 
+@mixin container-center {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
 @mixin gradient-text {
     background: $linear-gradient;
     background-clip: text;
@@ -12,7 +18,7 @@
 }
 
 @mixin full-screen {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 }
 
@@ -39,6 +45,16 @@
     }
 }
 
+@mixin media-1500px {
+    .edit {
+        .edit-container {
+            width: 85%;
+            height: 100%;
+            padding: 10%;
+        }
+    }
+}
+
 @mixin media-1050px {
     html {
         font-size: 12px;
@@ -47,6 +63,17 @@
     .login {
         section {
             width: 50%;
+        }
+    }
+    .edit {
+        .edit-container {
+            @include container-center;
+            flex-direction: column;
+            width: 75%;
+            height: 100%;
+            max-height: 100%;
+            padding-block: 10%;
+            gap: 20px;
         }
     }
 }
@@ -68,6 +95,36 @@
 
                 section {
                     margin-top: 15px;
+                }
+            }
+        }
+    }
+
+    .steps {
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+    
+            section {
+                max-width: 300px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+    
+                Image {
+                    width: 100%;
+                    height: auto;
+                }
+    
+                span {
+                    font-size: $utility-fontsize;
+                    font-weight: 300;
+                    color: $title-icons-color;
+                    text-align: center;
                 }
             }
         }
@@ -116,9 +173,18 @@
     html {
         font-size: 10px;
     }
+    .edit {    
+        .edit-container {
+            .thumb-track {
+                .track {
+                    height: 45px;
+                }
+            }
+        }
+    }
 }
 
-@mixin media-fix-1 {
+@mixin media-fix {
     .studio {
         .video-finder {
             .video {
@@ -135,14 +201,15 @@
             }
         }
     }
-}
-
-@mixin media-fix-2 {
-    .studio {
-        .recent-videos {
-            .video-container {
-                overflow: hidden scroll;
-            }
+    .edit {
+        .edit-container {
+            display: grid;
+            width: 60%;
+            height: 50%;
+            // max-height: 50%;
+            grid-template-columns: 47% 47%;
+            justify-content: center;
+            gap: 20px;
         }
     }
 }

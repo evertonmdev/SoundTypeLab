@@ -1,7 +1,9 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const SendCadastro = async () => {
+export const SendCadastro = async event => {
+    event.preventDefault()
+
     const Button = document.getElementById("button")
     Button.disabled = true
     Button.innerHTML = "Carregando..."
@@ -35,4 +37,41 @@ export const SendCadastro = async () => {
             theme: 'dark'
         })
     })
+}
+
+
+export const GetDownloadLink = async (url, title, email) => {
+    const Button = document.getElementById("buttondwn")
+    try {
+        Button.disabled = true
+        const data = {
+            url,
+            title,
+            email
+        }
+
+        const resoponse =  await axios.post(`${window.location.origin}/api/download`, data, {
+            responseType: 'blob'
+        })
+        const Title_Archive = title.replace(/[^a-zA-Z0-9]/g, ' ').replace(/\s+/g, ' ').trim()
+        const urlDownload = window.URL.createObjectURL(new Blob([resoponse.data], {
+            type: 'audio/*'
+        }))
+    
+        const link = document.createElement('a')
+        link.href = urlDownload
+        link.setAttribute('download', `${Title_Archive}.mp3`)
+        link.click()
+        
+        window.URL.revokeObjectURL(urlDownload)
+        toast("Download iniciado!", {
+            theme: 'dark'
+        })
+    } catch(e) {
+        Button.disabled = false
+        toast("Você precisa realizar o login para download", {
+            theme: 'dark'
+        })
+    }
+
 }

@@ -37,14 +37,14 @@ export default function Studio() {
         setRecentsMusics(RecentsMusics)
     }, [])
     return (
-        <section className='studio'>
+        <section className='studio' id="search">
             <div className='title'>
                 <h1>
                     Este é o seu estúdio
                 </h1>
-                <p>
+                <span>
                     Onde a mágica acontece
-                </p>
+                </span>
             </div>
             <div>
                 <section className='recent-videos'>

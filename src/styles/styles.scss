@@ -57,9 +57,7 @@ header {
             @include no-gaps;
             color: $title-icons-color;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include container-center;
             flex-direction: row;
             gap: 10px;
             font-size: 20px;
@@ -71,6 +69,7 @@ header {
             text-decoration: underline;
         }
     }
+
     .user:hover {
         background: $linear-gradient;
     }
@@ -87,10 +86,9 @@ header {
 
 .login {
     @include full-screen;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include container-center;
     flex-direction: column;
+
     // overflow: scroll;
     section {
         display: flex;
@@ -141,9 +139,7 @@ header {
                 button {
                     width: 100%;
                     padding-block: 10px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include container-center;
                     border-radius: 100px;
                     background: $linear-gradient;
                     font-size: $utility-fontsize;
@@ -171,10 +167,12 @@ header {
             .link {
                 color: $title-icons-color;
                 font-size: $utility-fontsize;
+
                 span {
                     transition: ease 0.2s;
                 }
             }
+
             .link:hover {
                 span {
                     font-size: 26px;
@@ -196,7 +194,7 @@ header {
     gap: 20px;
 
     h1 {
-        font-size: $bigtitle-fontsize * 1.5;
+        font-size: $bigtitle-fontsize * 1.4;
         color: $title-icons-color;
         font-weight: $title-weight;
     }
@@ -234,7 +232,7 @@ header {
             font-weight: $title-weight;
         }
 
-        p {
+        span {
             font-size: $title-fontsize;
             font-weight: $title-weight;
             @include gradient-text;
@@ -312,10 +310,8 @@ header {
 
             .video {
                 width: 100%;
-                display: flex;
+                @include container-center;
                 margin-block: 20px;
-                align-items: center;
-                justify-content: center;
 
                 .video-box {
                     margin-block: 20px;
@@ -390,19 +386,25 @@ header {
         color: $title-icons-color;
         font-size: $title-fontsize;
         font-weight: $title-weight;
+        text-align: center;
     }
 
     div {
         display: flex;
         width: 100%;
-        justify-content: space-between;
+        justify-content: space-around;
+        gap: 20px;
 
         section {
-            max-width: 300px;
+            width: 300px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
+
+            h1 {
+                font-size: $text-fontsize;
+            }
 
             Image {
                 width: 100%;
@@ -419,12 +421,93 @@ header {
     }
 }
 
-@media screen and (min-width: 700px) {
-    @include media-fix-1;
+.edit {
+    @include container-center;
+    width: 100vw;
+    min-height: 100%;
+   
+    .edit-container {
+        width: 100%;
+        height: 100%;
+        // background-color: red;
+        .thumb-track {
+            @include container-center;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 100%;
+            max-height: 100%;
+            img {
+                width: 80%;
+            }
+
+            .track {
+                width: 100%;
+                height: 55px;
+                display: flex;
+                gap: 10px;
+
+                section {
+                    background: $linear-gradient;
+                    width: 100%;
+                    @include container-center;
+                    border-radius: 100px;
+                    color: $title-icons-color;
+                    padding-inline: 30px;
+                    height: 100%;
+                }
+
+                .download-button {
+                    background: $linear-gradient;
+                    @include container-center;
+                    aspect-ratio: 1 / 1;
+                    height: 100%;
+                    width: max-content;
+                    border-radius: 100%;
+                    color: $title-icons-color;
+                }
+            }
+        }
+
+        .lyrics {
+            max-height: 100%;
+            clip-path: fill-box;
+            overflow: hidden;
+
+            h1 {
+                font-size: $title-fontsize;
+                color: $title-icons-color;
+                font-weight: $title-weight;
+            }
+
+            div {
+                max-height: 50vh;
+                clip-path: fill-box;
+                overflow: hidden scroll;
+
+                p {
+                    font-size: $utility-fontsize;
+                    color: $title-icons-color;
+                }
+
+                .actual {
+                    display: inline-block;
+                    font-size: $text-fontsize;
+                    transition: all 0.2s;
+                    @include gradient-text;
+                    font-weight: $title-weight;
+                    
+                }
+            }
+        }
+    }
 }
 
-@media screen and (min-width: 600px) {
-    @include media-fix-2;
+@media screen {
+    @include media-fix;
+}
+
+@media screen and (max-width: 1501px) {
+    @include media-1500px;
 }
 
 @media screen and (max-width: 1801px) {

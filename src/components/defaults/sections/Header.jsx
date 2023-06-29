@@ -37,7 +37,7 @@ const Header = ({ loginState }) => {
                       </div>
                       :
                       <div>
-                        <h1>{session.user.name}</h1>
+                        <h1>{session?.user?.name.split(' ')[0]}</h1>
                         <button onClick={() => setConfirmar(true)}><ChevronRight /></button>
                       </div>
                   }
