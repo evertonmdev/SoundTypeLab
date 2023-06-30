@@ -15,7 +15,7 @@ const GetYoutubeId = async (req, res) => {
 
     try {
 
-        const name_link = name.split(' ').length < 5 ? name + " official version music spotify" : name
+        const name_link = name + " official Audio"
 
         req.once('close', async () => {
            await browser.close();
