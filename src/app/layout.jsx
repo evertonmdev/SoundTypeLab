@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <Provider >
-    <html lang="en">
+    <html lang="pt">
       
         <head>
           <Script

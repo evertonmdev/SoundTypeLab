@@ -43,7 +43,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
     setonePorcetageSecond(duration / 100)
     useEffect(() => {
         load(url, {
-            autoplay: true,
+            // autoplay: true,
             format: 'mp3',
             html5: true,
             onload: () => setLoaded(true)
