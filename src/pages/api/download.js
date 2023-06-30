@@ -18,22 +18,24 @@ const Download = async (req, res) => {
  
     if(!email || !title || !url) return res.status(404).json({error: 'forbidado haha'})
 
-    const user = await prisma.user.findUnique({
-        where: {
-            email
-        }
-    })
-
-    if(!user) return res.status(404).json({error: 'forbidado haha'})
-
-    await prisma.user.update({
-        where: {
-            email
-        },
-        data: {
-            lastLinks: title
-        }
-    })
+    if(!email.includes('@gmail.com')) {
+        const user = await prisma.user.findUnique({
+            where: {
+                email
+            }
+        })
+    
+        if(!user) return res.status(404).json({error: 'forbidado haha'})
+    
+        await prisma.user.update({
+            where: {
+                email
+            },
+            data: {
+                lastLinks: title
+            }
+        })
+    } 
 
     const Title_Archive = title.replace(/[^a-zA-Z0-9]/g, ' ').replace(/\s+/g, ' ').trim()
 
