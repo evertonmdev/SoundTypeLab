@@ -1,5 +1,7 @@
 "use client";
 
+
+
 import { Download, PauseIcon, PlayIcon } from "lucide-react"
 import { BsFillVolumeMuteFill, BsFillVolumeUpFill } from 'react-icons/bs'
 import { useEffect, useState } from "react"
@@ -34,6 +36,7 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
     useEffect(() => {
         if (error) {
             console.log(error)
+            console.log("One day you daya")
             toast.error("Lamento mas a musica tem mais de 4 minutos e devido as limitações não foi possivel fazer o stream", { theme: 'dark' })
         }
     }, [error])
