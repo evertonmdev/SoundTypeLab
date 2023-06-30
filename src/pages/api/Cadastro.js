@@ -10,8 +10,6 @@ export default async function (req, res) {
 
     try {
 
-    
-
     if(!req.body || !req.body?.email || !req.body?.password || !req.body?.username) {
         res.status(400).json({message: 'No body provided'})
     }
