@@ -15,13 +15,10 @@ import SliderPlayback from "../utils/SliderPlayback";
 const Playback = ({ src, Title, setCurrentTime, duration }) => {
     const { data: session } = useSession()
 
-
     const url = `${window.location.origin}/api/playback?link=${encodeURIComponent(src)}&title=${encodeURIComponent(Title)}`
-    const { togglePlayPause, playing, load, getPosition, seek, mute, muted, error, setVolume, volume } = useAudioPlayer()
+    const { togglePlayPause, playing, load, getPosition, mute, muted, error, setVolume, volume } = useAudioPlayer()
     const [loaded, setLoaded] = useState(false)
     const [progress, setProgress] = useState("0:00")
-    const [onePorcetageSecond, setonePorcetageSecond] = useState(0)
-
 
     const formatTime = (milliseconds) => {
         const totalSeconds = Math.floor(milliseconds / 1000);
@@ -35,9 +32,12 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
     };
 
     useEffect(() => {
-        if (error) toast.error("Lamento mas a musica tem mais de 4 minutos e devido as limitações não foi possivel fazer o stream", { theme: 'dark' })
+        if (error) {
+            console.log(error)
+            toast.error("Lamento mas a musica tem mais de 4 minutos e devido as limitações não foi possivel fazer o stream", { theme: 'dark' })
+        }
     }, [error])
-
+    setonePorcetageSecond(duration / 100)
     useEffect(() => {
         load(url, {
             autoplay: true,
@@ -46,7 +46,6 @@ const Playback = ({ src, Title, setCurrentTime, duration }) => {
             onload: () => setLoaded(true)
         })
 
-        setonePorcetageSecond(duration / 100)
         const interval = setInterval(() => {
             const position = getPosition()
             setCurrentTime(position)

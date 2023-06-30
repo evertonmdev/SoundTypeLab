@@ -14,11 +14,12 @@ const GetYoutubeId = async (req, res) => {
 
 
     try {
+
+        const name_link = name.split(' ').length < 5 ? name + " official version music spotify" : name
+
         req.once('close', async () => {
            await browser.close();
         })
-
-        const name_link = name.split(' ').length < 5 ? name + " official version  music spotify" : name
 
         const page = await browser.newPage();
         await page.goto(`https://www.youtube.com/results?search_query=${name_link}`);
