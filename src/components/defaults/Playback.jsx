@@ -41,7 +41,7 @@ const Playback = ({ src, Title, setCurrentTime }) => {
             toast.error("Lamento mas a musica tem mais de 4 minutos e devido as limitações não foi possivel fazer o stream", { theme: 'dark' })
         }
     }, [error])
-   
+
     useEffect(() => {
         load(url, {
             format: 'mp3',
