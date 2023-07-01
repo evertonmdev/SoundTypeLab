@@ -13,13 +13,8 @@ export default async (req, res) => {
 
     var parsedLink = decodeURIComponent(req.query.link)
 
-    const Title_Archive = decodeURIComponent(req.query.title).replace(/[^a-zA-Z0-9]/g, ' ').replace(/\s+/g, ' ').trim()
-
     res.setHeader('Content-Type', 'audio/*')
-    res.setHeader('Content-Disposition', `attachment; filename=${Title_Archive}.mp3`)
     res.setHeader('Transfer-Encoding', 'chunked')
-    res.setHeader('Accept-Ranges', 'bytes')
-    res.setHeader('Content-Range', 'bytes 0-3827735/3827736')
     res.setHeader('Connection', 'keep-alive')
     res.setHeader('Expires', '0')
     res.setHeader('X-Content-Type-Options', 'nosniff')
@@ -29,13 +24,15 @@ export default async (req, res) => {
     res.setHeader('Pragma', 'no-cache')
     res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
     res.setHeader('Referrer-Policy', 'no-referrer')
-    res.setHeader('Feature-Policy', 'microphone "none"; camera "none"')
+    res.setHeader('Feature-Policy', 'microphone "none"; camera "none"') 
 
     const output = youtubeDl(parsedLink, {
         filter: "audioonly",
         quality: "highestaudio",
+        
     })
 
+    
     req.once('close', async () => {
         output.destroy();
     })
