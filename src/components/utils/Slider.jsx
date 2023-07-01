@@ -3,7 +3,7 @@
 import { twMerge } from 'tailwind-merge';
 import * as Slider from '@radix-ui/react-slider';
 
-const SliderDemo = ({onChange, className, formClass}) => (
+const SliderVol = ({onChange, className, formClass}) => (
   <form className={formClass}>
     <Slider.Root inverted="true" orientation='vertical' onValueChange={onChange} className={twMerge("relative flex flex-col items-center", className)} defaultValue={[100]} max={100} step={1}>
       <Slider.Track  className="bg-zinc-700 relative flex-grow rounded-full w-[3px]">
@@ -14,4 +14,4 @@ const SliderDemo = ({onChange, className, formClass}) => (
   </form>
 );
 
-export default SliderDemo;
+export default SliderVol;
