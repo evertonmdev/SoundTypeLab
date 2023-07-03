@@ -18,6 +18,11 @@
     filter: brightness(160%);
 }
 
+@mixin linear-gradient {
+    background: $linear-gradient;
+    filter: brightness(115%);
+}
+
 @mixin full-screen {
     width: 100vw;
     height: 100vh;
@@ -202,6 +207,10 @@
                 flex-direction: row;
                 overflow: scroll hidden;
 
+                h2 {
+                    margin-bottom: 15px;
+                }
+
                 .video {
                     flex-direction: column;
                     margin-left: 10px;
@@ -250,6 +259,9 @@
         .recent-videos {
             .video-container {
                 overflow: hidden scroll;
+                h2 {
+                    margin-right: 15px;
+                }
             }
         }
     }
