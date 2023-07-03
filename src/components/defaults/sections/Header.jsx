@@ -1,17 +1,23 @@
-import { useSession } from "next-auth/react"
-import { LogOutButton } from ".."
-import { useState } from "react"
-import { ChevronDown, ChevronLeft, ChevronRight, UserCircle2, X } from "lucide-react"
+import { useSession } from "next-auth/react";
+import { LogOutButton } from "..";
+import Link from "next/link";
+import { useState } from "react";
+import { ChevronDown, ChevronRight, UserCircle2 } from "lucide-react";
+
+import * as Collapsible from '@radix-ui/react-collapsible';
 
 const Header = ({ loginState }) => {
   const { data: session } = useSession()
-  const [Confirmar, setConfirmar] = useState(false)
 
   const [login, setLogin] = useState(loginState)
+
+  const [iconSize] = useState(22);
 
   if (login === null) {
     setLogin(false)
   }
+
+  const [open, setOpen] = useState(false);
 
   return (
     <header>
@@ -26,16 +32,32 @@ const Header = ({ loginState }) => {
               <h1>SoundTypeLab</h1>
             </a>
 
-            <div>
-              <details className="user">
-                <summary>
-                  Rogerinho
-                </summary>
-                <div className="logout">
-                  <LogOutButton />
-                </div>
-              </details>
-            </div>
+            <Collapsible.Root className="collapsible" open={open} onOpenChange={setOpen}>
+              {session ?
+                <>
+                  <Collapsible.Trigger asChild>
+                    <div className='container'>
+                      <button>
+                        {session?.user?.name.split(' ')[0]}
+                      </button>
+                      {open ? <ChevronRight size={iconSize} /> : <ChevronDown size={iconSize} />}
+                    </div>
+                  </Collapsible.Trigger>
+                  <Collapsible.Content className="content">
+                    <div className='container logout'>
+                      <LogOutButton />
+                    </div>
+                  </Collapsible.Content>
+                </>
+                :
+                <Link className='container' href="/login">
+                  <div>
+                    <UserCircle2 size={iconSize} />
+                    Entrar
+                  </div>
+                </Link>
+              }
+            </Collapsible.Root>
           </>
       }
 
@@ -61,15 +83,10 @@ const Header = ({ loginState }) => {
         }
       </div>
       :
-      <div className="user">
-        <a href="/login">
-          <UserCircle2 />
-          Entrar
-        </a>
-      </div> */
+       */
 
 
   )
 }
 
-export default Header
+export default Header;
