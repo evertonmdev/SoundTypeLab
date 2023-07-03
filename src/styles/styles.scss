@@ -460,32 +460,7 @@ header {
     button {
         @include container-center;
     }
-
-    .slider {
-        display: none;
-        transform: rotate(90deg);
-
-        input[type=range] {
-            z-index: 100;
-            position: absolute;
-            padding: 10px;
-            left: 10px;
-            outline: none;
-            appearance: none;
-            background: transparent;
-        }
-
-        @include chrome-input-range;
-        @include mozzila-input-range;
-        @include edge-input-range;
-    }
 }
-
-.volume-control:hover .slider {
-    display: flex
-}
-
-
 
 .edit {
     @include container-center;

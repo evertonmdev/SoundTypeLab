@@ -73,25 +73,6 @@
     }
 }
 
-@mixin range-track {
-    background: $secundary-color;
-    height: 8px;
-    border-radius: 100px;
-    cursor: pointer;
-    appearance: none;
-    align-self: center;
-    justify-self: center;
-}
-
-@mixin range-thumb {
-    height: 15px;
-    width: 15px;
-    margin-top: -3px;
-    background-color: #FFF;
-    border-radius: 100%;
-    appearance: none;
-    cursor: pointer;
-}
 
 @mixin media-1800px {
     .login {
@@ -202,6 +183,7 @@
             }
         }
 
+
         .recent-videos {
             .video-container {
                 flex-direction: row;
@@ -233,7 +215,6 @@
     html {
         font-size: 10px;
     }
-
     .edit {
         .edit-container {
             .thumb-track {

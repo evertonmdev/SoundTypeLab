@@ -4,7 +4,6 @@ import GoogleProvider from "next-auth/providers/google";
 
 import { PrismaClient } from "@prisma/client";
 
-const client = new PrismaClient();
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -21,13 +20,16 @@ export const authOptions = {
         password: {  label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
+        const client = new PrismaClient();
         const { username, password } = credentials
-
+        
         const user = await client.user.findUnique({
           where: {
             email: username
           }
         })
+        
+        await client.$disconnect()
 
         if(user && user.password === password) {
           return Promise.resolve({
