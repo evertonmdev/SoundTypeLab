@@ -18,6 +18,11 @@
     filter: brightness(160%);
 }
 
+@mixin linear-gradient {
+    background: $linear-gradient;
+    filter: brightness(115%);
+}
+
 @mixin full-screen {
     width: 100vw;
     height: 100vh;
@@ -101,10 +106,8 @@
         .edit-container {
             @include container-center;
             flex-direction: column;
-            width: 75%;
             height: 100%;
             max-height: 100%;
-            padding-block: 10%;
             gap: 20px;
         }
     }
@@ -130,6 +133,11 @@
                 }
             }
         }
+    }
+
+
+    .edit {
+        margin-top: 2rem;
     }
 
     .steps {
@@ -178,11 +186,19 @@
             }
         }
 
+        .edit {
+            margin-top: 2rem;
+        }
+
 
         .recent-videos {
             .video-container {
                 flex-direction: row;
                 overflow: scroll hidden;
+
+                h2 {
+                    margin-bottom: 15px;
+                }
 
                 .video {
                     flex-direction: column;
@@ -231,6 +247,9 @@
         .recent-videos {
             .video-container {
                 overflow: hidden scroll;
+                h2 {
+                    margin-right: 15px;
+                }
             }
         }
     }

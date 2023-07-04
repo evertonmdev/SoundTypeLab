@@ -26,7 +26,7 @@ body {
 
 header {
     width: 100%;
-    padding-left: 24px;
+    padding-left: 1rem;
     box-sizing: border-box;
     position: absolute;
     top: 0;
@@ -39,7 +39,7 @@ header {
         cursor: pointer;
 
         h1 {
-            font-size: 26px;
+            font-size: 1.8rem;
             padding-block: 5px;
             font-weight: $title-weight;
             font-family: Arial, Helvetica, sans-serif;
@@ -47,36 +47,54 @@ header {
         }
     }
 
+    .container-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3rem;
+
+        .go-back {
+            color: #4A0078;
+        }
+    }
+
     div {
         display: flex;
     }
 
-    .user {
-        background-color: $secundary-color;
-        padding: 12px 30px;
-        gap: 10px;
+    .collapsible {
+        display: flex;
+        justify-content: stretch;
+        flex-direction: column;
+        font-size: 1.8rem;
+        color: #FFF;
 
-        a,
-        h1,
-        button {
-            @include no-gaps;
-            color: $title-icons-color;
+        .container {
             cursor: pointer;
-            @include container-center;
+            align-items: center;
+            justify-content: start;
+            padding: 0.2rem 1rem;
+            display: flex;
             flex-direction: row;
-            gap: 10px;
-            font-size: 20px;
+            background-color: $secundary-color;
+
+            button,
+            div {
+                gap: 10px;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+            }
         }
 
-        a:hover,
-        h1:hover,
-        button:hover {
+        .container:hover {
+            background: $linear-gradient;
             text-decoration: underline;
         }
-    }
 
-    .user:hover {
-        background: $linear-gradient;
+        .logout {
+            position: absolute;
+        }
     }
 }
 
@@ -146,7 +164,7 @@ header {
                     padding-block: 10px;
                     @include container-center;
                     border-radius: 100px;
-                    background: $linear-gradient;
+                    @include linear-gradient;
                     font-size: $utility-fontsize;
                     color: $title-icons-color;
                     gap: 10px
@@ -210,7 +228,7 @@ header {
     }
 
     button {
-        background: $linear-gradient;
+        @include linear-gradient;
         display: inline;
         padding: 10px 40px;
         border-radius: 100px;
@@ -268,7 +286,7 @@ header {
 
                 h2 {
                     font-size: $utility-fontsize;
-                    color: $title-icons-color
+                    color: $title-icons-color;
                 }
             }
 
@@ -301,7 +319,7 @@ header {
             .finder {
 
                 button {
-                    background: $linear-gradient;
+                    @include linear-gradient;
                     align-self: center;
                     display: inline-block;
                     padding: 10px 40px;
@@ -380,13 +398,14 @@ header {
 .steps {
     width: 100%;
     padding: 4% 10%;
-    background: $linear-gradient;
+    @include linear-gradient;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 40px;
 
-    h1 {
+    h1,
+    summary {
         color: $title-icons-color;
         font-size: $title-fontsize;
         font-weight: $title-weight;
@@ -400,13 +419,24 @@ header {
         gap: 20px;
 
         section {
-            width: 300px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
+            width: 100%;
 
-            h1 {
+            details {
+                background-color: #00000027;
+                display: flex;
+                padding-block: 10px;
+                width: 100%;
+                border-radius: 10px;
+                transition: all 0.5s;
+                cursor: pointer;
+            }
+
+            h1,
+            summary {
                 font-size: $text-fontsize;
             }
 
@@ -416,26 +446,13 @@ header {
             }
 
             span {
-                font-size: $utility-fontsize;
+                font-size: $utility-fontsize / 1.1;
                 font-weight: 300;
                 color: $title-icons-color;
-                text-align: justify;
             }
         }
     }
 }
-
-.volume-control {
-    padding: 1px;
-    @include container-center;
-    position: relative;
-
-    button {
-        @include container-center;
-    }
-}
-
-
 
 .edit {
     @include container-center;
@@ -466,7 +483,7 @@ header {
                 justify-content: center;
 
                 section {
-                    background: $linear-gradient;
+                    @include linear-gradient;
                     width: 100%;
                     @include container-center;
                     border-radius: 100px;
@@ -482,7 +499,7 @@ header {
                 }
 
                 .download-button {
-                    background: $linear-gradient;
+                    @include linear-gradient;
                     @include container-center;
                     aspect-ratio: 1 / 1;
                     height: 100%;
