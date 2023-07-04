@@ -26,7 +26,7 @@ body {
 
 header {
     width: 100%;
-    padding-left: 24px;
+    padding-left: 1rem;
     box-sizing: border-box;
     position: absolute;
     top: 0;
@@ -39,11 +39,22 @@ header {
         cursor: pointer;
 
         h1 {
-            font-size: 26px;
+            font-size: 1.8rem;
             padding-block: 5px;
             font-weight: $title-weight;
             font-family: Arial, Helvetica, sans-serif;
             @include gradient-text;
+        }
+    }
+
+    .container-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3rem;
+
+        .go-back {
+            color: #4A0078;
         }
     }
 
@@ -55,14 +66,14 @@ header {
         display: flex;
         justify-content: stretch;
         flex-direction: column;
-        font-size: 18px;
+        font-size: 1.8rem;
         color: #FFF;
 
         .container {
             cursor: pointer;
             align-items: center;
             justify-content: start;
-            padding: 8px 12px;
+            padding: 0.2rem 1rem;
             display: flex;
             flex-direction: row;
             background-color: $secundary-color;
@@ -458,11 +469,6 @@ header {
             gap: 20px;
             max-width: 100%;
             max-height: 100%;
-
-            .go-back {
-                color: #FFF;
-                display: block;
-            }
 
             img {
                 width: 80%;

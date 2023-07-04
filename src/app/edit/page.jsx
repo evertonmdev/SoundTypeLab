@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 
 import { Header, Playback } from '@/components/defaults';
 import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 const Page = () => {
     const fraseAtual = useRef(null)
@@ -53,9 +54,6 @@ const Page = () => {
             <Header />
             <div className="edit-container">
                 <section className="thumb-track">
-                    <Link href="/" className="go-back">
-                        <ArrowLeft size={30} />
-                    </Link>
                     <img src={music.Thumbnail} />
                     <div className="track">
                         {

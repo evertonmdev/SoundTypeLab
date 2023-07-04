@@ -2,13 +2,13 @@ import { useSession } from "next-auth/react";
 import { LogOutButton } from "..";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, ChevronRight, UserCircle2 } from "lucide-react";
+import { ChevronDown, ChevronRight, UserCircle2, ArrowLeft } from "lucide-react";
 
 import * as Collapsible from '@radix-ui/react-collapsible';
+import { usePathname } from "next/navigation";
 
 const Header = ({ loginState }) => {
   const { data: session } = useSession()
-
   const [login, setLogin] = useState(loginState)
 
   const [iconSize] = useState(22);
@@ -19,19 +19,40 @@ const Header = ({ loginState }) => {
 
   const [open, setOpen] = useState(false);
 
+  const pathname = usePathname()
+
+  console.log(pathname)
+
   return (
     <header>
       {
         login ?
-          <a href="/" className="logo">
-            <h1>SoundTypeLab</h1>
-          </a>
-          :
-          <>
+          <div className="container-logo">
+            {
+              pathname !== "/" ?
+              <Link href="/" className="go-back">
+                    <ArrowLeft />
+              </Link>
+              : null
+            }
             <a href="/" className="logo">
               <h1>SoundTypeLab</h1>
             </a>
-
+          </div>
+          :
+          <>
+          <div className="container-logo">
+            {
+              pathname !== "/" ?
+              <Link href="/" className="go-back hover:scale-110 transition-all">
+                    <ArrowLeft />
+              </Link>
+              : null
+            }
+            <a href="/" className="logo">
+              <h1>SoundTypeLab</h1>
+            </a>
+          </div>
             <Collapsible.Root className="collapsible" open={open} onOpenChange={setOpen}>
               {session ?
                 <>

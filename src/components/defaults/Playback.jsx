@@ -96,8 +96,10 @@ const Playback = ({ src, Title, setCurrentTime }) => {
                             <span>
                                 {formatTime(getPosition() * 1000)}
                             </span>
+                            <span className="max-sm:hidden">
                                 /
-                            <span>
+                            </span>
+                            <span className="max-sm:hidden">
                                 {formatTime(duration * 1000)}
                             </span>
                            </span>
