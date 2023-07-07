@@ -73,173 +73,68 @@
     }
 }
 
-
-@mixin media-1800px {
-    .login {
-        section {
-            width: 35%;
-        }
-    }
-}
-
-@mixin media-1500px {
-    .edit {
-        .edit-container {
-            width: 85%;
-            padding: 10%;
-        }
-    }
-}
-
 @mixin media-1050px {
     html {
         font-size: 12px;
     }
-
     .login {
         section {
-            width: 50%;
-        }
-    }
-
-    .edit {
-        .edit-container {
-            @include container-center;
-            flex-direction: column;
-            height: 100%;
-            max-height: 100%;
-            gap: 20px;
-        }
-    }
-}
-
-@mixin media-700px {
-    .login {
-        section {
-            width: 80%;
-        }
-    }
-
-    .studio {
-        .video-finder {
-            .video {
-                .video-box {
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                section {
-                    margin-top: 15px;
-                }
-            }
-        }
-    }
-
-
-    .edit {
-        margin-top: 2rem;
-    }
-
-    .steps {
-        div {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            justify-content: space-around;
-            align-items: center;
-            gap: 20px;
-
-            section {
-                max-width: 300px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                Image {
-                    width: 100%;
-                    height: auto;
-                }
-
-                span {
-                    font-size: $utility-fontsize;
-                    font-weight: 300;
-                    color: $title-icons-color;
-                    text-align: center;
-                }
-            }
+            width: 70%;
         }
     }
 }
 
 @mixin media-600px {
-    .studio {
-        div {
-            display: flex;
-            flex-direction: column-reverse;
-        }
+    .recent-videos {
+        .video-container {
+            flex-direction: row;
+            overflow: scroll hidden;
 
-        .video-finder {
+            h2 {
+                margin-bottom: 15px;
+            }
+
             .video {
-                section {
-                    margin-top: 15px;
+                flex-direction: column;
+                margin-left: 10px;
+
+                span {
+                    margin-left: 0;
+                    max-width: 120px;
                 }
             }
-        }
 
-        .edit {
-            margin-top: 2rem;
-        }
-
-
-        .recent-videos {
-            .video-container {
-                flex-direction: row;
-                overflow: scroll hidden;
-
-                h2 {
-                    margin-bottom: 15px;
-                }
-
-                .video {
-                    flex-direction: column;
-                    margin-left: 10px;
-
-                    span {
-                        margin-left: 0;
-                        max-width: 120px;
-                    }
-                }
-
-                .video:first-child {
-                    margin-left: 0;
-                }
+            .video:first-child {
+                margin-left: 0;
             }
         }
     }
 }
+
 
 @mixin media-375px {
     html {
         font-size: 10px;
     }
-    .edit {
-        .edit-container {
-            .thumb-track {
-                .track {
-                    height: 45px;
-                }
-            }
-        }
-    }
 }
 
 @mixin media-fix {
+    .login {
+        section {
+            width: 30%;
+        }
+    }
+
     .studio {
+        .container {
+            grid-template-columns: repeat(2, 1fr);
+        }
         .video-finder {
+            grid-column: 2;
             .video {
                 .video-box {
                     display: grid;
-                    grid-template-columns: 46% 46%;
+                    grid-template-columns: repeat(2, 1fr);
                 }
             }
         }
@@ -247,6 +142,7 @@
         .recent-videos {
             .video-container {
                 overflow: hidden scroll;
+
                 h2 {
                     margin-right: 15px;
                 }
@@ -254,15 +150,25 @@
         }
     }
 
+    .steps {
+        div {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
     .edit {
+        margin-top: 0;
         .edit-container {
-            display: grid;
             width: 60%;
             height: 50%;
-            // max-height: 50%;
-            grid-template-columns: 47% 47%;
+            grid-template-columns: repeat(2, 1fr);
             justify-content: center;
-            gap: 20px;
+        }
+    }
+
+    .login {
+        section {
+            width: 30%;
         }
     }
 }
