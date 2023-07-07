@@ -66,14 +66,14 @@ header {
         display: flex;
         justify-content: stretch;
         flex-direction: column;
+        font-size: 1.8rem;
         color: #FFF;
-        font-size: 1.2rem;
 
         .container {
             cursor: pointer;
             align-items: center;
             justify-content: start;
-            padding: 0.5rem 1.2rem;
+            padding: 0.2rem 1rem;
             display: flex;
             flex-direction: row;
             background-color: $secundary-color;
@@ -111,11 +111,13 @@ header {
     @include full-screen;
     @include container-center;
     flex-direction: column;
+
+    // overflow: scroll;
     section {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        width: 80%;
+        width: 22%;
         gap: 25px;
 
         form {
@@ -259,9 +261,10 @@ header {
         }
     }
 
-    .container {
+    div {
         display: grid;
-        gap: 30px;
+        grid-template-columns: 46% 46%;
+        justify-content: space-between;
 
         section {
             div {
@@ -313,7 +316,6 @@ header {
         }
 
         .video-finder {
-            grid-row: 1;
             .finder {
 
                 button {
@@ -332,17 +334,12 @@ header {
                 width: 100%;
                 @include container-center;
                 margin-block: 20px;
- 
-                h1 {
-                    text-align: center;
-                }
 
                 .video-box {
                     margin-block: 20px;
                     align-items: center;
 
                     section {
-                        margin-top: 15px;
 
                         p,
                         span {
@@ -416,34 +413,40 @@ header {
     }
 
     div {
-        display: grid;
-        align-items: center;
+        display: flex;
         width: 100%;
+        justify-content: space-around;
         gap: 20px;
 
-        details {
-            background-color: #00000027;
+        section {
             display: flex;
             flex-direction: column;
-            padding-block: 10px;
+            align-items: center;
+            gap: 8px;
             width: 100%;
-            border-radius: 10px;
-            cursor: pointer;
+
+            details {
+                background-color: #00000027;
+                display: flex;
+                padding-block: 10px;
+                width: 100%;
+                border-radius: 10px;
+                transition: all 0.5s;
+                cursor: pointer;
+            }
 
             h1,
             summary {
                 font-size: $text-fontsize;
             }
 
-            img {
+            Image {
                 width: 100%;
                 height: auto;
             }
 
             span {
                 font-size: $utility-fontsize / 1.1;
-                text-align: center;
-                padding: 1.3rem;
                 font-weight: 300;
                 color: $title-icons-color;
             }
@@ -455,15 +458,10 @@ header {
     @include container-center;
     width: 100vw;
     min-height: 100%;
-    margin-top: 2rem;
 
     .edit-container {
-        display: grid;
-        gap: 20px;
         width: 100%;
         height: 100%;
-        padding: 10%;
-        box-sizing: border-box;
 
         .thumb-track {
             @include container-center;
@@ -546,8 +544,16 @@ header {
     }
 }
 
-@media screen and (min-width: 701px) {
+@media screen {
     @include media-fix;
+}
+
+@media screen and (max-width: 1501px) {
+    @include media-1500px;
+}
+
+@media screen and (max-width: 1801px) {
+    @include media-1800px;
 }
 
 @media screen and (max-width: 1051px) {
@@ -556,6 +562,10 @@ header {
 
 @media screen and (max-width: 601px) {
     @include media-600px;
+}
+
+@media screen and (max-width: 701px) {
+    @include media-700px;
 }
 
 @media screen and (max-width: 375px) {

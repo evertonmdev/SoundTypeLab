@@ -8,7 +8,8 @@ export default function Steps () {
         <h1>
           Recomendações para uma melhor utilização
         </h1>
-        <div> 
+        <div>
+          
           <StepsItem
             title='Pesquisar músicas'
             imgUrl={Step1}

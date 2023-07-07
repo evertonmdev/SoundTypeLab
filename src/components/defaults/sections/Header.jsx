@@ -66,7 +66,7 @@ const Header = ({ loginState }) => {
                   </Collapsible.Trigger>
                   <Collapsible.Content className="content">
                     <div className='container logout'>
-                      <LogOutButton size={iconSize}/>
+                      <LogOutButton />
                     </div>
                   </Collapsible.Content>
                 </>
