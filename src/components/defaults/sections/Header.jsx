@@ -21,8 +21,6 @@ const Header = ({ loginState }) => {
 
   const pathname = usePathname()
 
-  console.log(pathname)
-
   return (
     <header>
       {
@@ -30,29 +28,25 @@ const Header = ({ loginState }) => {
           <div className="container-logo">
             {
               pathname !== "/" ?
-              <Link href="/" className="go-back">
-                    <ArrowLeft />
-              </Link>
-              : null
+                <Link href="/" className="go-back">
+                  <ArrowLeft />
+                    <span className="logo">SoundTypeLab</span>
+                </Link>
+                : <Link href="/" className="logo">SoundTypeLab</Link>
             }
-            <a href="/" className="logo">
-              <h1>SoundTypeLab</h1>
-            </a>
           </div>
           :
           <>
-          <div className="container-logo">
-            {
-              pathname !== "/" ?
-              <Link href="/" className="go-back hover:scale-110 transition-all">
+            <div className="container-logo">
+              {
+                pathname !== "/" ?
+                  <Link href="/" className="go-back">
                     <ArrowLeft />
-              </Link>
-              : null
-            }
-            <a href="/" className="logo">
-              <h1>SoundTypeLab</h1>
-            </a>
-          </div>
+                    <span className="logo">SoundTypeLab</span>
+                  </Link>
+                  : <Link href="/" className="logo">SoundTypeLab</Link>
+              }
+            </div>
             <Collapsible.Root className="collapsible" open={open} onOpenChange={setOpen}>
               {session ?
                 <>
@@ -66,7 +60,7 @@ const Header = ({ loginState }) => {
                   </Collapsible.Trigger>
                   <Collapsible.Content className="content">
                     <div className='container logout'>
-                      <LogOutButton size={iconSize}/>
+                      <LogOutButton size={iconSize} />
                     </div>
                   </Collapsible.Content>
                 </>
