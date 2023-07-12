@@ -77,30 +77,6 @@ const Header = ({ loginState }) => {
       }
 
     </header>
-
-
-    /* session ?
-      <div className="user">
-        {
-          Confirmar
-            ?
-            <div className="flex gap-3">
-              <LogOutButton />
-              <button className="close-button" onClick={() => setConfirmar(false)}><X /></button>
-            </div>
-            :
-            <details>
-              <summary>
-                <h1>{session?.user?.name.split(' ')[0]}</h1>
-                <button onClick={() => setConfirmar(true)}><ChevronRight /></button>
-              </summary>
-            </details>
-        }
-      </div>
-      :
-       */
-
-
   )
 }
 
