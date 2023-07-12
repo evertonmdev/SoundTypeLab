@@ -61,7 +61,7 @@ export default function Studio() {
                     Onde a mágica acontece
                 </span>
             </div>
-            <div className='container'>
+            <div>
                 <section className='recent-videos'>
                     <h1>
                         Musicas Recentes

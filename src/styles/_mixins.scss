@@ -111,20 +111,22 @@
     }
 }
 
-
 @mixin media-375px {
     html {
         font-size: 10px;
     }
+    .edit {
+        .edit-container {
+            .thumb-track {
+                .track {
+                    height: 45px;
+                }
+            }
+        }
+    }
 }
 
 @mixin media-fix {
-    .login {
-        section {
-            width: 30%;
-        }
-    }
-
     .studio {
         .container {
             grid-template-columns: repeat(2, 45%);
@@ -162,26 +164,15 @@
         }
     }
 
-    .steps {
-        div {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
     .edit {
         margin-top: 0;
 
         .edit-container {
             width: 80%;
             height: 50%;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 47% 47%;
             justify-content: center;
-        }
-    }
-
-    .login {
-        section {
-            width: 30%;
+            gap: 20px;
         }
     }
 }
