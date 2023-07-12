@@ -73,25 +73,7 @@
     }
 }
 
-
-@mixin media-1800px {
-    .login {
-        section {
-            width: 35%;
-        }
-    }
-}
-
-@mixin media-1500px {
-    .edit {
-        .edit-container {
-            width: 85%;
-            padding: 10%;
-        }
-    }
-}
-
-@mixin media-1050px {
+@mixin media-1250px {
     html {
         font-size: 12px;
     }
@@ -104,114 +86,25 @@
 
     .edit {
         .edit-container {
-            @include container-center;
-            flex-direction: column;
-            height: 100%;
-            max-height: 100%;
-            gap: 20px;
-        }
-    }
-}
-
-@mixin media-700px {
-    .login {
-        section {
-            width: 80%;
-        }
-    }
-
-    .studio {
-        .video-finder {
-            .video {
-                .video-box {
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                section {
-                    margin-top: 15px;
-                }
-            }
-        }
-    }
-
-
-    .edit {
-        margin-top: 2rem;
-    }
-
-    .steps {
-        div {
-            display: flex;
-            flex-direction: column;
             width: 100%;
-            justify-content: space-around;
-            align-items: center;
-            gap: 20px;
-
-            section {
-                max-width: 300px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                Image {
-                    width: 100%;
-                    height: auto;
-                }
-
-                span {
-                    font-size: $utility-fontsize;
-                    font-weight: 300;
-                    color: $title-icons-color;
-                    text-align: center;
-                }
-            }
         }
     }
 }
 
 @mixin media-600px {
+    .login {
+        section {
+            width: 60%;
+        }
+    }
+
     .studio {
-        div {
-            display: flex;
-            flex-direction: column-reverse;
-        }
-
-        .video-finder {
-            .video {
-                section {
-                    margin-top: 15px;
-                }
-            }
-        }
-
-        .edit {
-            margin-top: 2rem;
-        }
-
-
-        .recent-videos {
-            .video-container {
-                flex-direction: row;
-                overflow: scroll hidden;
-
-                h2 {
-                    margin-bottom: 15px;
-                }
-
+        .container {
+            .video-finder {
                 .video {
-                    flex-direction: column;
-                    margin-left: 10px;
-
-                    span {
-                        margin-left: 0;
-                        max-width: 120px;
+                    .video-box {
+                        width: 70%;
                     }
-                }
-
-                .video:first-child {
-                    margin-left: 0;
                 }
             }
         }
@@ -235,31 +128,48 @@
 
 @mixin media-fix {
     .studio {
-        .video-finder {
-            .video {
-                .video-box {
-                    display: grid;
-                    grid-template-columns: 46% 46%;
+        .container {
+            grid-template-columns: repeat(2, 45%);
+            align-items: start;
+            justify-content: space-between;
+
+            .recent-videos {
+                .video-container {
+                    flex-direction: column;
+                    overflow: hidden scroll;
+                    padding-right: 10px;
+
+                    .video {
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 1rem;
+
+                        span {
+                            max-width: 60%;
+                        }
+                    }
                 }
             }
-        }
 
-        .recent-videos {
-            .video-container {
-                overflow: hidden scroll;
-                h2 {
-                    margin-right: 15px;
+            .video-finder {
+                grid-column: 2;
+
+                .video {
+                    .video-box {
+                        grid-template-columns: repeat(2, 1fr);
+                        width: 100%;
+                    }
                 }
             }
         }
     }
 
     .edit {
+        margin-top: 0;
+
         .edit-container {
-            display: grid;
-            width: 60%;
+            width: 80%;
             height: 50%;
-            // max-height: 50%;
             grid-template-columns: 47% 47%;
             justify-content: center;
             gap: 20px;

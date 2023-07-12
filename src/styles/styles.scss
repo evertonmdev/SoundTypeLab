@@ -28,33 +28,32 @@ header {
     width: 100%;
     padding-left: 1rem;
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
     top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     backdrop-filter: blur(10px);
+    z-index: 100;
 
-    .logo {
+    .container-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
 
-        h1 {
+        .logo {
             font-size: 1.8rem;
             padding-block: 5px;
             font-weight: $title-weight;
             font-family: Arial, Helvetica, sans-serif;
             @include gradient-text;
         }
-    }
-
-    .container-logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.3rem;
 
         .go-back {
-            color: #4A0078;
+            color: $primary-color;
+            @include container-center;
+            gap: 0.4rem;
         }
     }
 
@@ -64,6 +63,7 @@ header {
 
     .collapsible {
         display: flex;
+        position: relative;
         justify-content: stretch;
         flex-direction: column;
         font-size: 1.8rem;
@@ -111,8 +111,6 @@ header {
     @include full-screen;
     @include container-center;
     flex-direction: column;
-
-    // overflow: scroll;
     section {
         display: flex;
         justify-content: center;
@@ -263,61 +261,58 @@ header {
 
     div {
         display: grid;
-        grid-template-columns: 46% 46%;
-        justify-content: space-between;
-
-        section {
-            div {
-                display: flex;
-                flex-direction: column;
-            }
-        }
+        grid-template-columns: 100%;
+        width: 100%;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
 
         .recent-videos {
-            h1 {
+            h1, p, span {
                 color: $title-icons-color;
+            }
+            h1 {
                 font-size: $title-fontsize;
                 font-weight: $title-weight;
-                margin-bottom: 20px;
+                margin-bottom: 1rem;
             }
 
             .video-container {
-                max-height: 260px;
-
-                h2 {
-                    font-size: $utility-fontsize;
-                    color: $title-icons-color;
-                }
-            }
-
-            .video {
                 display: flex;
-                flex-direction: row;
-                justify-content: left;
-                margin-bottom: 15px;
+                gap: 1rem;
+                overflow: scroll hidden;
+                max-width: 100%;
+                max-height: 100%;
 
-                .thumbnail {
-                    min-width: 120px;
-                    max-width: 120px;
-                    height: 70px;
-                    background-color: #ddd;
-                }
-
-                span {
-                    color: $title-icons-color;
+                p {
                     font-size: $utility-fontsize;
-                    margin-left: 15px;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    max-width: 60%;
+                }
+                .video {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    .thumbnail {
+                        min-width: 110px;
+                        height: 65px;
+                    }
+    
+                    span {
+                        max-width: 110px;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        font-size: $utility-fontsize;
+                    }
                 }
             }
         }
-
         .video-finder {
-            .finder {
+            grid-row: 1;
 
+            .finder {
+                @include container-center;
+                flex-direction: column;
                 button {
                     @include linear-gradient;
                     align-self: center;
@@ -331,16 +326,21 @@ header {
             }
 
             .video {
-                width: 100%;
                 @include container-center;
                 margin-block: 20px;
-
+                h1 {
+                    text-align: center;
+                }
+              
                 .video-box {
-                    margin-block: 20px;
+                    display: grid;
+                    margin-block: 10px;
+                    width: 50%;
                     align-items: center;
+                    justify-content: center;
+                    gap: 1rem;
 
                     section {
-
                         p,
                         span {
                             color: $title-icons-color;
@@ -360,8 +360,8 @@ header {
 
                         .buttons {
                             display: grid;
-                            grid-template-columns: 48% 4% 48%;
-                            padding-inline: 5%;
+                            grid-template-columns: repeat(3, 1fr);
+                            padding-inline: 10%;
                             width: 100%;
                             background-color: $primary-color;
                             border-radius: 100px;
@@ -519,12 +519,14 @@ header {
                 font-size: $title-fontsize;
                 color: $title-icons-color;
                 font-weight: $title-weight;
+                padding-bottom: 10px;
             }
 
             div {
                 max-height: 50vh;
                 clip-path: fill-box;
                 overflow: hidden scroll;
+                padding-right: 10px;
 
                 p {
                     font-size: $utility-fontsize;
@@ -548,24 +550,12 @@ header {
     @include media-fix;
 }
 
-@media screen and (max-width: 1501px) {
-    @include media-1500px;
-}
-
-@media screen and (max-width: 1801px) {
-    @include media-1800px;
-}
-
-@media screen and (max-width: 1051px) {
-    @include media-1050px
+@media screen and (max-width: 1251px) {
+    @include media-1250px
 }
 
 @media screen and (max-width: 601px) {
     @include media-600px;
-}
-
-@media screen and (max-width: 701px) {
-    @include media-700px;
 }
 
 @media screen and (max-width: 375px) {
