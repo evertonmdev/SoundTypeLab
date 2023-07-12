@@ -16,6 +16,12 @@ export default function Studio() {
 
     const [Loading, setLoading] = useState(false)
 
+    const handleEnter = (event) => {
+        if (event.key === 'Enter') {
+            SendReq();
+        }
+    }
+
     const SendReq = async () => {
         setLoading(true)
         setErrorReq(null)
@@ -26,7 +32,7 @@ export default function Studio() {
         await axios.post('/api/posts', {
             name_find: NameMusic
         }).then(r => {
-            if(!r.data?.arrayMusics[0]) {
+            if (!r.data?.arrayMusics[0]) {
                 setErrorReq("Não foi possivel encontrar a musica ou letra sincronizada indisponivel")
             }
             setResponseData({
@@ -44,6 +50,7 @@ export default function Studio() {
         console.log(RecentsMusics)
         setRecentsMusics(RecentsMusics)
     }, [])
+
     return (
         <section className='studio' id="search">
             <div className='title'>
@@ -62,26 +69,26 @@ export default function Studio() {
                     <div className='video-container'>
                         {
                             RecentsMusics ? RecentsMusics.map((r, i) => <RecentVideos key={i} Title={r.Title} Thumbnail={r.Thumbnail} Lyrics={r.Lyrics} />)
-                                : <h2>Você ainda não pesquisou por músicas</h2>
+                                : <p>Você ainda não pesquisou por músicas</p>
                         }
                     </div>
                 </section>
                 <section className='video-finder'>
                     <div className='finder'>
-                        <InputStylized type='text' onChange={doc => setNameMusic(doc.target.value)} placeholder='Qual o nome da musica?' />
+                        <InputStylized type='text' searchReq={handleEnter} onChange={doc => setNameMusic(doc.target.value)} placeholder='Qual o nome da musica?' />
                         <ButtonStylized onClick={SendReq}>Pesquisar</ButtonStylized>
                     </div>
                     <div className='video'>
                         {
                             Loading ?
                                 <>
-                                    <Lottie animationData={LoadingAnimation}/>
+                                    <Lottie autoSize resizeMode='center' style={{ width: '50%' }} animationData={LoadingAnimation} />
                                 </>
                                 : ErrorReq ?
                                     <h1 className='text-ColorTwo'>{ErrorReq}</h1>
-                                : ResponseData.ArrayMusics ?
-                                   <CardVideo ArrayMusics={ResponseData.ArrayMusics} />
-                                : null
+                                    : ResponseData.ArrayMusics ?
+                                        <CardVideo ArrayMusics={ResponseData.ArrayMusics} />
+                                        : null
                         }
                     </div>
                 </section>
