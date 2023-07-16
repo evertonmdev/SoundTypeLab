@@ -1,15 +1,15 @@
 import Image from 'next/image';
 
-export default function StepsItem({imgUrl, text, title}) {
+export default function StepsItem({ imgUrl, text, title }) {
     return (
-        <section>
-            <h1>
+        <details>
+            <summary>
                 {title}
-            </h1>
-            <Image src={imgUrl} className='image'/>
+            </summary>
+            <Image src={imgUrl} />
             <span>
                 {text}
             </span>
-        </section>
+        </details>
     )
 }

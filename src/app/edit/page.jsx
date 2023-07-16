@@ -4,6 +4,8 @@ import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 
 import { Header, Playback } from '@/components/defaults';
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 const Page = () => {
     const fraseAtual = useRef(null)

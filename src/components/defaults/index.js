@@ -1,7 +1,7 @@
 import InputStylized from "./InputStylized";
 import ButtonStylized from "./ButtonStylized";
 import LogInGoogleButton from "./LogInGoogleButton";
-import LogOutGoogleButton from "./LogOutButton";
+import LogOutButton from "./LogOutButton";
 import RecentVideos from "./RecentVideos";
 
 import CardVideo from "./CardVideo";
@@ -18,7 +18,7 @@ import Playback from "./Playback";
 export {
     InputStylized,
     LogInGoogleButton,
-    LogOutGoogleButton,
+    LogOutButton,
     ButtonStylized,
     RegisterForm,
     CardVideo,

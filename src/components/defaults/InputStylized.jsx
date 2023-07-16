@@ -1,4 +1,4 @@
-const InputStylized = ({ onChange, placeholder, type, id, name, required }) => {
+const InputStylized = ({ searchReq, onChange, placeholder, type, id, name, required }) => {
     return (
         <input
             type={type}
@@ -9,6 +9,7 @@ const InputStylized = ({ onChange, placeholder, type, id, name, required }) => {
             className="input-general"
             id={id}
             name={name}
+            onKeyDown={searchReq}
         />
     )
 }
