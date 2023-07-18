@@ -15,6 +15,7 @@ export default function Studio() {
     const [RecentsMusics, setRecentsMusics] = useState(false)
 
     const [Loading, setLoading] = useState(false)
+    const [timerDelay, setTimerDelay] = useState(false)
 
     const SendReq = async () => {
         setLoading(true)
@@ -39,11 +40,18 @@ export default function Studio() {
         setLoading(false)
     }
 
+    const handleClickKey = async (event) => {
+        if(timerDelay) return
+        if(event.code === 'Enter') await SendReq();
+        setTimerDelay(true);
+        setTimeout(() => setTimerDelay(false), 500)
+    }
+
     useEffect(() => {
         const RecentsMusics = localStorage.getItem("RecenttMusics") ? JSON.parse(localStorage.getItem("RecenttMusics")) : false
-        console.log(RecentsMusics)
         setRecentsMusics(RecentsMusics)
     }, [])
+
     return (
         <section className='studio' id="search">
             <div className='title'>
@@ -68,7 +76,7 @@ export default function Studio() {
                 </section>
                 <section className='video-finder'>
                     <div className='finder'>
-                        <InputStylized type='text' onChange={doc => setNameMusic(doc.target.value)} placeholder='Qual o nome da musica?' />
+                        <InputStylized type='text' onKeyPress={handleClickKey} onChange={doc => setNameMusic(doc.target.value)} placeholder='Qual o nome da musica?' />
                         <ButtonStylized onClick={SendReq}>Pesquisar</ButtonStylized>
                     </div>
                     <div className='video'>

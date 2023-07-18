@@ -23,6 +23,15 @@ const Playback = ({ src, Title, setCurrentTime }) => {
     const [progress, setProgress] = useState(0)
     const [oneSecond,setOneSecond] = useState(0)
 
+    const [timerDelay, setTimerDelay] = useState(true);
+
+    const handleClickKey = (event) => {
+        if(timerDelay) return
+        if(event.code === 'Space') togglePlayPause();
+        setTimerDelay(true);
+        setTimeout(() => setTimerDelay(false), 500)
+    }
+
     const formatTime = (milliseconds) => {
         const totalSeconds = Math.floor(milliseconds / 1000);
         const minutes = Math.floor(totalSeconds / 60);
@@ -46,6 +55,10 @@ const Playback = ({ src, Title, setCurrentTime }) => {
         load(url, {
             format: 'mp3',
         })
+
+        window.addEventListener('keypress', handleClickKey);
+
+        return () => window.removeEventListener('keypress', handleClickKey);
     }, [])
 
     useEffect(() => {
