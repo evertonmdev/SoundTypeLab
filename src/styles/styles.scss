@@ -27,6 +27,7 @@ body {
 header {
     width: 100%;
     padding-left: 1rem;
+    height: 6vh;
     box-sizing: border-box;
     position: fixed;
     top: 0;
@@ -44,7 +45,6 @@ header {
 
         .logo {
             font-size: 1.8rem;
-            padding-block: 5px;
             font-weight: $title-weight;
             font-family: Arial, Helvetica, sans-serif;
             @include gradient-text;
@@ -66,14 +66,16 @@ header {
         position: relative;
         justify-content: stretch;
         flex-direction: column;
+        height: 100%;
         color: #FFF;
-        font-size: 0.9rem;
+        font-size: 1rem;
 
         .container {
             cursor: pointer;
             align-items: center;
             justify-content: start;
-            padding: 0.5rem 1.2rem;
+            padding-inline: 1.2rem;
+            flex: 1;
             display: flex;
             flex-direction: row;
             background-color: $secundary-color;
@@ -338,7 +340,7 @@ header {
                 .video-box {
                     display: grid;
                     margin-block: 10px;
-                    width: 50%;
+                    width: 65%;
                     align-items: center;
                     justify-content: center;
                     gap: 1rem;
