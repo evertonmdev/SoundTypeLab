@@ -73,44 +73,11 @@
     }
 }
 
-@mixin media-1250px {
-    html {
-        font-size: 12px;
-    }
-
-    .login {
-        section {
-            width: 50%;
-        }
-    }
-
-    .edit {
-        .edit-container {
-            width: 100%;
-        }
-    }
-}
-
-@mixin media-600px {
-    .login {
-        section {
-            width: 60%;
-        }
-    }
-}
-
-
-@mixin media-375px {
-    html {
-        font-size: 10px;
-    }
-}
-
 @mixin media-fix {
-    .login {
-        section {
-            width: 30%;
-        }
+
+    html,
+    body {
+        font-size: 14px;
     }
 
     header {
@@ -118,21 +85,16 @@
     }
 
     .studio {
+
         .container {
-            grid-template-columns: repeat(2, 45%);
             align-items: start;
-            justify-content: space-between;
 
             .recent-videos {
                 .video-container {
                     flex-direction: column;
-                    overflow: hidden scroll;
-                    padding-right: 10px;
 
                     .video {
                         flex-direction: row;
-                        align-items: center;
-                        gap: 1rem;
 
                         span {
                             max-width: 60%;
@@ -140,40 +102,46 @@
                     }
                 }
             }
-
             .video-finder {
-                grid-column: 2;
 
+                .finder {
+                    @include container-center;
+                    flex-direction: column;
+                    button {
+                        @include linear-gradient;
+                        align-self: center;
+                        display: inline-block;
+                        padding: 10px 40px;
+                        border-radius: 100px;
+                        color: $title-icons-color;
+                        margin-top: 20px;
+                        font-size: $utility-fontsize;
+                    }
+                }
+    
                 .video {
                     .video-box {
                         grid-template-columns: repeat(2, 1fr);
-                        width: 100%;
                     }
                 }
             }
         }
     }
 
+
     .steps {
         div {
-            grid-template-columns: repeat(3, 1fr);
+            flex-direction: row;
         }
     }
 
     .edit {
-        margin-top: 0;
-
         .edit-container {
-            width: 80%;
-            height: 50%;
-            grid-template-columns: repeat(2, 1fr);
-            justify-content: center;
-        }
-    }
 
-    .login {
-        section {
-            width: 30%;
+            .thumb-track,
+            .lyrics {
+                min-width: 380px;
+            }
         }
     }
 }

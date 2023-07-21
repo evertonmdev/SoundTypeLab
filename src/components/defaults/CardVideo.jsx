@@ -7,7 +7,7 @@ function CardVideo({ ArrayMusics }) {
 
 
   const SetNextMusic = () => {
-    if(indexMusicSelected < ArrayMusics.length - 1) {
+    if (indexMusicSelected < ArrayMusics.length - 1) {
       setIndexMusicSelected(indexMusicSelected + 1)
     } else {
       setIndexMusicSelected(0)
@@ -27,44 +27,44 @@ function CardVideo({ ArrayMusics }) {
 
   const SetMusicSelected = () => {
     localStorage.setItem("MusicSelected", JSON.stringify({
-        Title,
-        Thumbnail,
-        Lyrics,
-        duration
-      })
+      Title,
+      Thumbnail,
+      Lyrics,
+      duration
+    })
     )
 
     const RecenttMusics = JSON.parse(localStorage.getItem("RecenttMusics"))
 
-    if(!RecenttMusics) {
-        let RecenttMusics = []
-        RecenttMusics.push({
-          Title,
-          Thumbnail,
-          Lyrics
-        })
-        localStorage.setItem("RecenttMusics", JSON.stringify(RecenttMusics)
+    if (!RecenttMusics) {
+      let RecenttMusics = []
+      RecenttMusics.push({
+        Title,
+        Thumbnail,
+        Lyrics
+      })
+      localStorage.setItem("RecenttMusics", JSON.stringify(RecenttMusics)
       )
     } else {
-      if(RecenttMusics.length >= 5){
-         RecenttMusics.shift({
+      if (RecenttMusics.length >= 5) {
+        RecenttMusics.shift({
           Title,
           Thumbnail,
           Lyrics
-         })
-      } else if(!RecenttMusics.find(e => e.Title === Title)) {
+        })
+      } else if (!RecenttMusics.find(e => e.Title === Title)) {
         RecenttMusics.push({
           Title,
           Thumbnail,
           Lyrics
         })
-        localStorage.setItem("RecenttMusics", JSON.stringify(RecenttMusics)) 
+        localStorage.setItem("RecenttMusics", JSON.stringify(RecenttMusics))
       }
     }
 
     window.location.href = '/edit'
-}
-  
+  }
+
 
 
   return (
@@ -80,11 +80,10 @@ function CardVideo({ ArrayMusics }) {
           Deseja usar esta musica?
         </p>
         <div className='buttons'>
-        <button onClick={SetMusicSelected}>
-          Sim
-        </button>
-          <Separator />
-          <button onClick={SetNextMusic}>
+          <button className='button-yes' onClick={SetMusicSelected}>
+            Sim
+          </button>
+          <button className='button-no' onClick={SetNextMusic}>
             Não
           </button>
         </div>

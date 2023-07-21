@@ -17,9 +17,8 @@ body {
     @include full-screen;
     overflow-x: hidden;
     background-color: $background-color;
-    scroll-behavior: smooth;
-
-    font-size: 16px;
+    
+    font-size: 12px;
 }
 
 @include scroll-bar;
@@ -28,7 +27,6 @@ header {
     width: 100%;
     padding-left: 1rem;
     height: 6vh;
-    box-sizing: border-box;
     position: fixed;
     top: 0;
     display: flex;
@@ -44,7 +42,7 @@ header {
         cursor: pointer;
 
         .logo {
-            font-size: 1.8rem;
+            font-size: $title-fontsize;
             font-weight: $title-weight;
             font-family: Arial, Helvetica, sans-serif;
             @include gradient-text;
@@ -68,7 +66,7 @@ header {
         flex-direction: column;
         height: 100%;
         color: #FFF;
-        font-size: 1rem;
+        font-size: $utility-fontsize;
 
         .container {
             cursor: pointer;
@@ -91,7 +89,6 @@ header {
 
         .container:hover {
             background: $linear-gradient;
-            text-decoration: underline;
         }
 
         .logout {
@@ -118,7 +115,7 @@ header {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        width: 80%;
+        width: min(35rem, 85%);
         gap: 25px;
 
         form {
@@ -214,7 +211,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    padding-inline: 10%;
+    padding-inline: $section-padding;
     gap: 20px;
 
     h1 {
@@ -242,8 +239,7 @@ header {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 5% 10%;
-    box-sizing: border-box;
+    padding: 5% $section-padding;
 
     .title {
         display: inline-block;
@@ -263,13 +259,18 @@ header {
     }
 
     .container {
-        display: grid;
-        grid-template-columns: 100%;
-        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-self: center;
         overflow: hidden;
         align-items: center;
-        justify-content: center;
+        flex-wrap: wrap-reverse;
         gap: 30px;
+
+        .recent-videos, .video-finder {
+            flex: 1;
+            min-width: 262px;
+        }
 
         .recent-videos {
             h1, p, span {
@@ -283,10 +284,11 @@ header {
 
             .video-container {
                 display: flex;
+                flex-direction: row;
                 gap: 1rem;
-                overflow: scroll hidden;
+                overflow: auto;
                 max-width: 100%;
-                max-height: 100%;
+                max-height: 25rem;
 
                 p {
                     font-size: $utility-fontsize;
@@ -311,7 +313,6 @@ header {
             }
         }
         .video-finder {
-            grid-row: 1;
 
             .finder {
                 @include container-center;
@@ -340,10 +341,10 @@ header {
                 .video-box {
                     display: grid;
                     margin-block: 10px;
-                    width: 65%;
+                    width: 70%;
                     align-items: center;
                     justify-content: center;
-                    gap: 1rem;
+                    gap: 2rem;
 
                     section {
                         p,
@@ -364,33 +365,27 @@ header {
                         }
 
                         .buttons {
-                            display: grid;
-                            grid-template-columns: repeat(3, 1fr);
-                            padding-inline: 10%;
+                            display: flex;
                             width: 100%;
-                            background-color: $primary-color;
+                            background-color: $secundary-color;
                             border-radius: 100px;
-                            padding-block: 10px;
                             margin-top: 20px;
-
-                            .separator {
-                                width: 2px;
-                                height: 100%;
-                                background-color: #FFF;
-                                justify-self: center;
-                            }
+                            overflow: hidden;
 
                             button {
                                 color: $title-icons-color;
                                 font-size: $utility-fontsize;
                                 font-weight: 400;
                                 cursor: pointer;
+                                flex: 1;
                                 text-align: center;
+                                height: 40px;
                             }
-
-                            button:hover {
-                                background: radial-gradient(#000000, #44006e, #4A0078);
-                                ;
+                            .button-yes:hover {
+                                background: linear-gradient(to left, #4A0078 , #BB5A00);
+                            }
+                            .button-no:hover {
+                                background: linear-gradient(to right, #4A0078, #BB5A00);
                             }
                         }
                     }
@@ -402,12 +397,12 @@ header {
 
 .steps {
     width: 100%;
-    padding: 4% 10%;
+    padding: 4% $section-padding;
     @include linear-gradient;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
+    flex-direction: column;
 
     h1,
     summary {
@@ -418,17 +413,19 @@ header {
     }
 
     div {
-        display: grid;
-        align-items: center;
+        @include container-center;
         width: 100%;
         gap: 20px;
+        flex-direction: column;
 
         details {
             background-color: #00000027;
             display: flex;
             flex-direction: column;
             padding-block: 10px;
+            flex: 1;
             width: 100%;
+            min-width: 100px;
             border-radius: 10px;
             cursor: pointer;
 
@@ -458,21 +455,28 @@ header {
     width: 100vw;
     min-height: 100%;
     margin-top: 2rem;
+    padding: $section-padding;
 
     .edit-container {
-        display: grid;
-        gap: 20px;
-        width: 100%;
-        height: 100%;
-        padding: 10%;
-        box-sizing: border-box;
+        // display: grid;
+        // gap: 20px;
+        // width: 100%;
+        // height: 100%;
+        // padding: 10%;
+        display: flex;
+        flex-wrap: wrap;
+        width: min(70rem, 100%);
+        gap: 2rem;
+
+        .thumb-track, .lyrics {
+            flex: 1;
+            min-width: 300px;
+        }
 
         .thumb-track {
             @include container-center;
             flex-direction: column;
             gap: 20px;
-            max-width: 100%;
-            max-height: 100%;
 
             img {
                 width: 80%;
@@ -552,16 +556,4 @@ header {
 
 @media screen and (min-width: 701px) {
     @include media-fix;
-}
-
-@media screen and (max-width: 1251px) {
-    @include media-1250px
-}
-
-@media screen and (max-width: 601px) {
-    @include media-600px;
-}
-
-@media screen and (max-width: 375px) {
-    @include media-375px;
 }
